@@ -25,6 +25,7 @@ Route::get('/single_company', function () { return view('portfolio_company.singl
 Route::get('/dashboard', function () { return view('home.dashboard'); });
 Route::get('/new_company', function () { return view('portfolio_company.new_company'); });
 Route::get('/add_company', function () { return view('portfolio_company.add_company'); });
+Route::get('/funding', function () { return view('portfolio_company.funding'); });
 Route::get('/dashboard1', function () { return view('home.dashboard1'); });
 Route::get('/add_chart', function () { return view('home.add_chart'); });
 Route::get('/export_report', function () { return view('home.export_report'); });

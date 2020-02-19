@@ -54,19 +54,19 @@
                    <p >No files have been uploaded yet</p>
                   {{-- <a class="btn btn-primary" href="/file_upload">Upload file</a> --}}
                   <div class="dropdown">
-	  <a href="#" class="btn btn-primary upload-btn text-white  mb-1 dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	    Upload File
-	  </a>
-	  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-	    <small class="ml-1 text-secondary">Upload a file from</small>
-	    <div class="dropdown-divider"></div>
-	    <button class="dropdown-item" data-toggle="modal" role="button" style="font-size: 14px;" type="button"><img src="{{ asset('css/icons/fromdrive.png') }}" style="height: 16px; width: 16px; color:#717171; " /> Google Drive</button>
-	     <button class="dropdown-item " style="font-size: 14px;" id="computer" data-target="#modalCenter"><img src="{{ asset('css/icons/laptop.png') }}" style="height: 16px; width: 16px; color:#717171;"/> Your computer</button>
-    {{-- <button class="dropdown-item" type="button">Something else here</button> --}}
-			  </div>
-			</div>
-           </div>
-        </div>
+                    <a href="#" class="btn btn-primary upload-btn text-white  mb-1 dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Upload File
+                    </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                    <small class="ml-1 text-secondary">Upload a file from</small>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" data-toggle="modal" role="button" style="font-size: 14px;" type="button"><img src="{{ asset('css/icons/fromdrive.png') }}" style="height: 16px; width: 16px; color:#717171; " /> Google Drive</button>
+                    <button class="dropdown-item " style="font-size: 14px;" id="computer" data-target="#modalCenter"><img src="{{ asset('css/icons/laptop.png') }}" style="height: 16px; width: 16px; color:#717171;"/> Your computer</button>
+                  {{-- <button class="dropdown-item" type="button">Something else here</button> --}}
+                      </div>
+                    </div>
+                    </div>
+                 </div>
 
 
 @stop

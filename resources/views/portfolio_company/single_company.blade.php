@@ -63,7 +63,10 @@
                   </ul>   
                   <div class="row toggle" style="">
                     <p class="other">Closed</p>
-                    <i class="fas other fa-toggle-on toggler" style=""></i>
+                    <label class="switch mt-1 ml-2">
+                      <input type="checkbox" checked>
+                      <span class="slider round"></span>
+                    </label>
                     <p class="open" style="color: #7AEF1F;">Open</p>
                 </div>
      
@@ -345,9 +348,9 @@
             </div>
 
             <div class="funding">
-              <div class=" mt-5">
+              <div class=" mt-5 row p-3">
                 <h4 class="text-uppercase"> funding </h4>
-                  
+                <a href="/funding" class="ml-auto" style="color: #000000"> Edit <i class="fas fa-pencil-alt"></i></a>      
               </div>
                 <div class="row" >
                     <div class="col-6  ml-1">
@@ -425,9 +428,53 @@
 
                 </div>
               <div>
-                <p class="lead"><i class="fas fa-plus ml-2" style="font-size: 1.2rem; color: #666666"></i> Add contact</p>  
+                <a  href="" class="lead text-black-50" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus ml-2" style="font-size: 1.2rem; color: #666666"></i> Add contact</a>  
               </div>   
                 
+              <!-- Add contact modal -->
+              <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addKpi">Add contact</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <input type="text" placeholder="Search contact" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                      {{-- <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancel </button> --}}
+                      <button type="button" class="btn btn-primary  " class="close" data-dismiss="modal" aria-label="Close">Apply</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+              <!-- Add file modal -->
+              <div class="modal fade" id="addFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addFile">Add File</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <label for=""> Name:</label>
+                      <input type="text" placeholder="" class="form-control">
+
+                      <input type="file" class="form-control mt-4">
+                    </div>
+                    <div class="modal-footer">
+                      {{-- <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancel </button> --}}
+                      <button type="button" class="btn btn-primary  " class="close" data-dismiss="modal" aria-label="Close">Apply</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
               </div>
               <div class="mt-5 files">
                 <h4 class="text-uppercase">files </h4>
@@ -437,7 +484,7 @@
                   </div>
 
                   <div class="col-4">
-                    <p class="lead"><i class="fas fa-plus ml-2" style="font-size: 1.2rem; color: #666666"></i> Add file</p>                    </div>
+                    <a href="" class="lead text-black-50" data-toggle="modal" data-target="#addFile"><i class="fas fa-plus ml-2" style="font-size: 1.2rem; color: #666666"></i> Add file</p>                    </div>
 
                 </div>
               </div>
