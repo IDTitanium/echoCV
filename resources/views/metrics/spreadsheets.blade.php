@@ -26,7 +26,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style media="screen">
       .btnDelAll {
-        top: 9.5rem;
+        top: 9.4rem;
         border-bottom: 1px solid #dee2e6;
         width: 80vw;
         left: 1.2rem;

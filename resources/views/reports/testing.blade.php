@@ -3,7 +3,7 @@
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>New Report</title>
+      <title>Testing</title>
       <link href="{{ asset('css/contactTable.css') }}" rel="stylesheet">
       <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -17,23 +17,25 @@
       <link ‎href="https://fonts.googleapis.com/css?family=europa:200,600" rel="stylesheet">
 
       <!-- Scripts -->
-      <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
+      <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+      <!-- <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script> -->
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
       <script src="{{ asset('js/app.js') }}" defer></script>
   </head>
   <style>
-  .ck.ck-editor{
-    width: 70%;
-    margin-left: 17%;
-    margin-top: 6%;
+    .ck.ck-editor, #cke_editor {
+      width: 70%;
+      margin-left: 17%;
+      margin-top: 6%;
+    }
 
-  }
-  .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
-     height: 60vh;
-  }
-  .btn-secondary:hover{
-    color: #000000;
-  }
+    .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+       height: 60vh;
+    }
+
+    .btn-secondary:hover{
+      color: #000000;
+    }
   </style>
   <body>
     <div class="wrapper">
@@ -41,9 +43,9 @@
       @include('layouts.sidebar')
         </div>
         <main class="wholeContent">
+          @include('inc.messages')
           <h3 class="newRepNav">Reports</h3>
-          <!-- <form action="{{ route('reports.store') }}" method="post" enctype="multipart/form-data"> -->
-            <form action="{{ route('testing.upload') }}" method="post" enctype="multipart/form-data">
+          <form action="{{ route('ckeditor.upload') }}" method="post" enctype="multipart/form-data">
             @csrf
             <section class="newReport">
               <a href="/reports" class="btn btn-default">Back</a>
@@ -59,10 +61,13 @@
                 </div>
               </div>
             </section>
-            <textarea name="name" rows="8" cols="30" id="editor" placeholder="Add Some Text"></textarea>
+            <!-- <textarea name="name" rows="8" cols="30" id="editor" placeholder="Add Some Text"></textarea> -->
             <!-- <div id="editor" class="fomm-control" placeholder="Add Some Text">
               <h1> Add Some Text</h1>
             </div> -->
+            <textarea name="editor" class="editorCK"></textarea>
+            <input type="text" name="name1" value="aaaa">
+
             <div class="container d-flex justify-content-center mt-3 pt-1  " >
               <button type="button" name="button" class="btn btn-secondary" id="textRequest" data-toggle="modal" data-target="#myModal" id="open">Add text request</button>
               <button type="button" name="button" class="btn btn-secondary ml-3" id="metricRequest" data-toggle="modal" data-target="#myModal" id="open">Add metrics request</button>
@@ -73,30 +78,14 @@
 
         </main>
 
-        <script>
-                // ClassicEditor
-                //   .create( document.querySelector( '#editor' ) )
-                //   .then( editor => {
-                //           console.log( editor );
-                //   } )
-                //   .catch( error => {
-                //           console.error( error );
-                //   } );
-                //   image: {
-                //       toolbar: [ 'imageTextAlternative' ]
-                //   }
 
-                  ClassicEditor
-                  .create( document.querySelector( '#editor' ) )
-                  .then(editor => {
-                  document.getElementById('editor').innerHTML = editor.getData();
-                  })
-                  .catch( error => {
-                  console.error( error );
-                  } );
-                  image: {
-                       toolbar: [ 'imageTextAlternative' ]
-                   }
+        <script type="text/javascript">
+            CKEDITOR.replace('editor', {
+                filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
+        </script>
+        <script>
 
 
                 const textRequest = document.getElementById('textRequest')

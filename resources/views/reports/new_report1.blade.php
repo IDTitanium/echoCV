@@ -40,8 +40,8 @@
               <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                 <button type="submit" class="btn btn-primary btnNow" name="status" value="sent" data-toggle="tooltip" data-placement="left" title="Send report now">Send now</button>
                 <div class="btn-group" role="group">
-                  <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" aria-haspopup="true"
-                  aria-expanded="false" data-toggle="tooltip" data-placement="top" title="Schedule report"></button>
+                  <button id="btnGroupDrop1" type="submit" class="btn btn-primary dropdown-toggle" aria-haspopup="true"
+                  aria-expanded="false" data-toggle="tooltip" data-placement="top" name="status"  value="scheduled" title="Schedule report"></button>
                 </div>
               </div>
             </div>
@@ -52,6 +52,7 @@
                 <input type="text" class="border mt-3" name="subject" required placeholder=" Subject">
                 <input type="text" class="border mt-3" name="receiver" required  placeholder=" email">
                 <input type="text" name="content" class="border p-4" placeholder="Content" required>
+                <input type="file" name="image" value="">
               </article>
             </div>
           </form>

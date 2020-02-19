@@ -78,7 +78,20 @@ class ComposeMailController extends Controller
     'report_title' => 'required',
     'content' => 'required',
     'receiver' => 'required',
+    'image'  => 'image|nullable|max:1999'
   ]);
+
+  if($request->hasFile('image')) {
+      $originName = $request->file('image')->getClientOriginalName();
+      $fileName = pathinfo($originName, PATHINFO_FILENAME);
+      $extension = $request->file('image')->getClientOriginalExtension();
+      $fileName = $fileName.'_'.time().'.'.$extension;
+
+      $request->file('image')->storeAs('public/images', $fileName);
+      // $request->file('image')->move(public_path('images'), $fileName);
+
+
+  }
 
   //Create Report
   $report = new Report;
@@ -86,6 +99,7 @@ class ComposeMailController extends Controller
   $report->subject =$request->input('subject');
   $report->receiver =$request->input('receiver');
   $report->content =$request->input('content');
+  $report->image = $fileName;
   // $report->user_id =$loguser->id;
   // $report->company_id =$comp->id;
   $report->status =$request->input('status');
@@ -97,14 +111,19 @@ class ComposeMailController extends Controller
       'subject' => $report->subject,
       'title' => $report->report_title,
       'body' => $report->content,
-      'status' => $report->status
+      'status' => $report->status,
+      'image' => $report->image
   ];
-
+// dd($details);
   // $emails = array($details['receiver']);
     $recipients = explode(', ', $details['receiver']);
     // dd($recipients);
     if($details['status'] == 'saved'){
         return redirect('/reports')->with('success', 'Report Successful Saved, You can view it in Draft');//This is will lead to the draft
+      }
+      else if($details['status'] == 'scheduled'){
+        return view('/reports/samp')->with(compact('details'));
+          // return view('/reports/samp')->with('success', 'Preview the report');
       }
       else {
           Mail::to($recipients)->send(new ReportsMail($details));

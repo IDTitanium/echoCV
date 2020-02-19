@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Testing</title>
+      <link href="{{ asset('css/contactTable.css') }}" rel="stylesheet">
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <!-- Styles -->
+      <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
+      <link href="{{ asset('css/sample.css') }}" rel="stylesheet">
+      <link href="{{ asset('css/report.css') }}" rel="stylesheet">
+
+      <!-- Fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+      <link ‎href="https://fonts.googleapis.com/css?family=europa:200,600" rel="stylesheet">
+
+      <!-- Scripts -->
+      <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+      <script src="{{ asset('js/app.js') }}" defer></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      @include('layouts.sidebar')
+        </div>
+        <main class="wholeContent">
+          @include('inc.messages')
+          <h3 class="newRepNav">Reports</h3>
+
+          @if(count($met) > 0)
+            @foreach($met as $mets)
+              <div class="container">
+                {!! $mets->name !!}
+              </div>
+            @endforeach
+          @endif
+        </main>
+
+
+  </body>
+</html>

@@ -91,6 +91,12 @@ Route::get('/sample_report', 'ComposeMailController@sample');
 Route::get('/draft_report', 'ComposeMailController@draft');
 // Route::post('/reports/', 'ComposeMailController@store');
 
+
+Route::get('ckeditor', 'CkeditorController@index');
+Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
+Route::resource('test', 'TestingController');
+Route::post('testing/upload', 'TestingController@upload')->name('testing.upload');
+
 //For google sheets
 Route::get('google_test', 'MetricsController');
 Route::post('post', 'PostController')->name('post.store');

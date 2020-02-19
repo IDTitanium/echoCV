@@ -94,7 +94,9 @@ use Carbon\Carbon;
                     <tr>
                       <td class="tdt"><input type="checkbox" name="" value=""></td>
                       <td data-search="Tiger Nixon" class="tdDept">{{ $report->report_title }}</td>
-                      <td class="tdName">System Architect</td>
+                      <td class="tdName">
+                        <img style="width:5rem" src="/storage/images/{{ $report->image }}" alt="">
+                      </td>
                       <td class="tdMsg">{{ $report->content }}</td>
                       <td class="tdTime">{{ Carbon::parse($report->created_at)->diffForHumans() }}</td>
                     </tr>

@@ -69,14 +69,14 @@
                 </tr>
               </thead>
               <tbody class="tdBody">
-                <tr id="">
-                  <td class="tdt"><input type="checkbox" class="checkbox" ></td>
-                  <td data-search="" class="" onclick="window.location='/metrics_kpi'">Sheet 1</td>
-                </tr>
-                <tr id="">
-                  <td class="tdt"><input type="checkbox" class="checkbox" ></td>
-                  <td data-search="" class="" onclick="window.location='/metrics_kpi'">Sheet 2</td>
-                </tr>
+                @if(count($graphs) > 0)
+                  @foreach($graphs as $graph)
+                  <tr id="tr_{{$graph->id}}">
+                    <td class="tdt"><input type="checkbox" class="checkbox" ></td>
+                    <td data-search="" class="" onclick="window.location='/metrics_kpi'">{{ $graph->name }}</td>
+                  </tr>
+                  @endforeach
+                @endif
               </tbody>
             </table>
           </div>

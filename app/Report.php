@@ -11,7 +11,7 @@ class Report extends Model
     public $timestamps = true;
 
     protected $fillable = [
-    'report_title', 'content', 'subject', 'receiver', 'status'
+    'report_title', 'content', 'subject', 'receiver', 'status', 'image'
     ];
 
 

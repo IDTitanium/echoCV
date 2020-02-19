@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use DB;
 //Google Sheets
 use Revolution\Google\Sheets\Facades\Sheets;
 // These for charts
@@ -108,10 +109,10 @@ class MetricsController extends Controller
               // Bar
               $chart->displaylegend(true);
               $chart->title($graph->name, 30, "rgb(255, 99, 132)", true, 'Nunito');
-              $chart->labels([$graph->aaa, $graph->bbb, $graph->ccc, $graph->ddd, $graph->eee, $graph->fff,
-              $graph->ggg, $graph->hhh, $graph->iii, $graph->jjj, $graph->kkk, $graph->lll]);
-              $chart->dataset('EchoVC Mertics', 'bar',  [$graph->aaa1, $graph->bbb1, $graph->ccc1, $graph->ddd1,
-              $graph->eee1, $graph->fff1, $graph->ggg1, $graph->hhh1, $graph->iii1, $graph->jjj1, $graph->kkk1, $graph->lll1])
+              $chart->labels([$graph->field1, $graph->field2, $graph->field3, $graph->field4, $graph->field5, $graph->field6,
+              $graph->field7, $graph->field8, $graph->field9, $graph->field10, $graph->field11, $graph->field12]);
+              $chart->dataset('EchoVC Mertics', 'bar',  [$graph->value1, $graph->value2, $graph->value3, $graph->value4,
+              $graph->value5, $graph->value6, $graph->value7, $graph->value8, $graph->value9, $graph->value10, $graph->value11, $graph->value12])
               ->color($borderColors)
               ->backgroundcolor($fillColors);
 
@@ -119,19 +120,19 @@ class MetricsController extends Controller
               $chart1->minimalist(true);  //This shows the graph line
               // $chart1->displaylegend(true);
               // $chart1->title($graph->name, 30, "rgb(255, 99, 132)", true, 'Nunito');
-              $chart1->labels([$graph->aaa, $graph->bbb, $graph->ccc, $graph->ddd, $graph->eee, $graph->fff,
-              $graph->ggg, $graph->hhh, $graph->iii, $graph->jjj, $graph->kkk, $graph->lll]);
-              $chart1->dataset('EchoVC Mertics', 'doughnut',  [$graph->aaa1, $graph->bbb1, $graph->ccc1, $graph->ddd1,
-              $graph->eee1, $graph->fff1, $graph->ggg1, $graph->hhh1, $graph->iii1, $graph->jjj1, $graph->kkk1, $graph->lll1])
+              $chart1->labels([$graph->field1, $graph->field2, $graph->field3, $graph->field4, $graph->field5, $graph->field6,
+              $graph->field7, $graph->field8, $graph->field9, $graph->field10, $graph->field11, $graph->field12]);
+              $chart1->dataset('EchoVC Mertics', 'doughnut',  [$graph->value1, $graph->value2, $graph->value3, $graph->value4,
+              $graph->value5, $graph->value6, $graph->value7, $graph->value8, $graph->value9, $graph->value10, $graph->value11, $graph->value12])
               ->color($borderColors)
               ->backgroundcolor($fillColors);
 
               // Line
               // $chart2->title($graph->name, 30, "rgb(255, 99, 132)", true, 'Nunito');
-              $chart2->labels([$graph->aaa, $graph->bbb, $graph->ccc, $graph->ddd, $graph->eee, $graph->fff,
-              $graph->ggg, $graph->hhh, $graph->iii, $graph->jjj, $graph->kkk, $graph->lll]);
-              $chart2->dataset('EchoVC Mertics', 'line',  [$graph->aaa1, $graph->bbb1, $graph->ccc1, $graph->ddd1,
-              $graph->eee1, $graph->fff1, $graph->ggg1, $graph->hhh1, $graph->iii1, $graph->jjj1, $graph->kkk1, $graph->lll1])
+              $chart2->labels([$graph->field1, $graph->field2, $graph->field3, $graph->field4, $graph->field5, $graph->field6,
+              $graph->field7, $graph->field8, $graph->field9, $graph->field10, $graph->field11, $graph->field12]);
+              $chart2->dataset('EchoVC Mertics', 'line',  [$graph->value1, $graph->value2, $graph->value3, $graph->value4,
+              $graph->value5, $graph->value6, $graph->value7, $graph->value8, $graph->value9, $graph->value10, $graph->value11, $graph->value12])
               ->color("rgb(255, 99, 132)")
               ->backgroundcolor("rgb(255, 199, 231)")
               ->fill(true)
@@ -279,22 +280,28 @@ class MetricsController extends Controller
 
    public function sheets()
    {
-       return view('metrics.sheets');
+      $graphs = DB::table('graphs')->distinct()->get();
+      // $graphs = Graph::all();
+      // dd($graphs);
+      return view('metrics.sheets')->with('graphs', $graphs);
    }
 
    public function spreadsheets()
    {
-       return view('metrics.spreadsheets');
+      $graphs = Graph::all();
+      return view('metrics.spreadsheets')->with('graphs', $graphs);
    }
 
    public function kpi()
    {
-       return view('metrics.kpi');
+      $graphs = Graph::all();
+      return view('metrics.kpi')->with('graphs', $graphs);
    }
 
    public function kpis()
    {
-       return view('metrics.kpi_value');
+      $graphs = Graph::all();
+      return view('metrics.kpi_value')->with('graphs', $graphs);
    }
 
 }

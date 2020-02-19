@@ -21,6 +21,7 @@ class CreateReportsTable extends Migration
             $table->string('status');
             $table->string('subject')->nullable();
             $table->string('receiver');
+            $table->string('image');
       			$table->bigInteger('user_id')->unsigned()->nullable();
       			$table->bigInteger('company_id')->unsigned()->nullable();
             $table->timestamps();
