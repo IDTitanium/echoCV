@@ -66,12 +66,13 @@
           </ul> -->
           <div class="newData">
             <a href="/add_metrics" class="">+ New data source</a>
-            <button type="button" class="btn btn-excel" data-toggle="modal" data-target="#excelModal" id="open">+ Import Excel</button>
+            <!-- <button type="button" class="btn btn-excel" data-toggle="modal" data-target="#excelModal" id="open">+ Import Excel</button> -->
           </div><hr>
           <label for="">Custom</label>
           <div class="formMett custom">
               User provided metric
-              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" id="open">Create</button>
+              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#excelModal" id="open">Create</button>
+              <!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" id="open">Create</button> -->
           </div>
           <label for="">Link</label>
           <div class="formG">
@@ -101,7 +102,7 @@
       </main>
 
       <!-- Modal to create new metrics -->
-          <div class="modal" tabindex="-1" role="dialog" id="myModal" aria-labelledby="details-l" aria-hidden="true">
+          <!-- <div class="modal" tabindex="-1" role="dialog" id="myModal" aria-labelledby="details-l" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <form method="post" action="{{ route('metrics.store') }}">
                 @csrf
@@ -218,7 +219,7 @@
                 </div>
               </form>
             </div>
-          </div>
+          </div> -->
 
 
       <!-- Excel modal -->

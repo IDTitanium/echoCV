@@ -1,3 +1,8 @@
+<?php
+use Carbon\Carbon;
+
+?>
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -43,6 +48,11 @@
         box-shadow: 0 0 0 0 rgba(0,0,0,0)!important;
         outline: 0px auto -webkit-focus-ring-color;
       }
+
+      .inputSearch {
+        top: 7.9rem;
+        left: 33.6rem;
+      }
     </style>
 </head>
 <body>
@@ -62,9 +72,9 @@
       <section class="contactMain">
         <div class="sheetsTop d-flex">
           <h6 class="conEmailPhone mr-1" onclick="window.location='/metrics_sheets'">
-            Gillete Annual Income </h6>
-            <h6 onclick="window.location='/metrics_kpi'" class="conEmailPhone mr-1">- Sheet 1</h6>
-            <h6 onclick="window.location='/metrics_single_kpi'">- Customer walk-in</h6>
+            {{ $graphs->name }} </h6>
+            <h6 onclick="window.location='/metrics_kpi/{{ $graphs->id }}'" class="conEmailPhone mr-1">- {{ $graphs->desc }}</h6>
+            <h6>- Added {{ Carbon::parse($graphs->created_at)->diffForHumans() }}</h6>
         </div>
 
         <div class="widget-wrapper container-fluid" style="padding:0; margin:0">
@@ -73,30 +83,58 @@
             <table id="mySearchableData" class="display table table-hover table-responsive">
               <thead class="tdHead">
                 <tr>
-                  <td class="" style="min-width:70vw!important; padding-top: 0.8rem;">NAME</td>
-                    <td class="" style="width: 10vw;min-width:4vw!important; padding-top: 0.8rem;">Date</td>
+                  <td class="" style="min-width:70vw!important; padding-top: 0.8rem;">DATE</td>
+                  <td class="" style="width: 10vw;min-width:4vw!important; padding-top: 0.8rem;">VALUE</td>
                 </tr>
               </thead>
               <tbody class="tdBody">
                 <tr id="">
-                  <td data-search="" class="" onclick="window.location=''">Nov 2019</td>
-                  <td class="">1,203,987</td>
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field1 }}</td>
+                  <td class="">{{ $graphs->value1 }}</td>
                 </tr>
                 <tr id="">
-                  <td data-search="" class="" onclick="window.location=''">Oct 2019</td>
-                  <td class="">123,757,087</td>
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field2 }}</td>
+                  <td class="">{{ $graphs->value2 }}</td>
                 </tr>
                 <tr id="">
-                  <td data-search="" class="" onclick="window.location=''">Sept 2019</td>
-                  <td class="">5,000</td>
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field3 }}</td>
+                  <td class="">{{ $graphs->value3 }}</td>
                 </tr>
                 <tr id="">
-                  <td data-search="" class="" onclick="window.location=''">Aug 2019</td>
-                  <td class="">0</td>
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field4 }}</td>
+                  <td class="">{{ $graphs->value4 }}</td>
                 </tr>
                 <tr id="">
-                  <td data-search="" class="" onclick="window.location=''">July 2019</td>
-                  <td class="">23,987</td>
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field5 }}</td>
+                  <td class="">{{ $graphs->value5 }}</td>
+                </tr>
+                <tr id="">
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field6 }}</td>
+                  <td class="">{{ $graphs->value6 }}</td>
+                </tr>
+                <tr id="">
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field7 }}</td>
+                  <td class="">{{ $graphs->value7 }}</td>
+                </tr>
+                <tr id="">
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field8 }}</td>
+                  <td class="">{{ $graphs->value8 }}</td>
+                </tr>
+                <tr id="">
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field9 }}</td>
+                  <td class="">{{ $graphs->value9 }}</td>
+                </tr>
+                <tr id="">
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field10 }}</td>
+                  <td class="">{{ $graphs->value10 }}</td>
+                </tr>
+                <tr id="">
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field11 }}</td>
+                  <td class="">{{ $graphs->value11 }}</td>
+                </tr>
+                <tr id="">
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field12 }}</td>
+                  <td class="">{{ $graphs->value12 }}</td>
                 </tr>
               </tbody>
             </table>
@@ -105,7 +143,9 @@
       </section><br><br>
 
     </main>
-
+    <div class="inputSearch">
+      <img src="{{ asset('css/icons/grsearch.svg') }}" >
+    </div>
 </body>
 
 
