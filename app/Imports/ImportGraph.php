@@ -27,22 +27,6 @@ class ImportGraph implements ToModel
           'fff'    => $row[9],
           'ggg'    => $row[10],
           'hhh'    => $row[11],
-          'iii'    => $row[12],
-          'jjj'    => $row[13],
-          'kkk'    => $row[14],
-          'lll'    => $row[15],
-          'aaa1'   => $row[16],
-          'bbb1'   => $row[17],
-          'ccc1'   => $row[18],
-          'ddd1'   => $row[19],
-          'eee1'   => $row[20],
-          'fff1'   => $row[21],
-          'ggg1'   => $row[22],
-          'hhh1'   => $row[23],
-          'iii1'   => $row[24],
-          'jjj1'   => $row[25],
-          'kkk1'   => $row[26],
-          'lll1'   => $row[27],
         ]);
     }
 }

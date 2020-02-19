@@ -181,7 +181,7 @@
                         <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
                    </div>  
                    
-                   <p> {{company->$lead}}</p>
+                   <p> lead</p>
                    <p> Analyst: Bimpe</p>
                    
                 </div>
