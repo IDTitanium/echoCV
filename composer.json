@@ -24,7 +24,7 @@
         "pragmarx/tracker": "^3.5",
         "realrashid/sweet-alert": "^3.0",
         "revolution/laravel-google-sheets": "^5.0",
-        "webpatser/laravel-uuid": "^3.0"
+        "webpatser/laravel-uuid": "^3.0",
     },
     "require-dev": {
         "facade/ignition": "^1.4",
@@ -71,5 +71,5 @@
             "@php artisan key:generate --ansi"
         ]
     }
-    
+
 }

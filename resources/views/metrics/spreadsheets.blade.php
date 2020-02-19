@@ -1,3 +1,8 @@
+<?php
+use Carbon\Carbon;
+
+?>
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -26,7 +31,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style media="screen">
       .btnDelAll {
-        top: 9.5rem;
+        top: 9.4rem;
         border-bottom: 1px solid #dee2e6;
         width: 80vw;
         left: 1.2rem;
@@ -47,6 +52,11 @@
 
       .display {
         margin-top: 2.5rem;
+      }
+
+      .inputSearch {
+        top: 8.9rem;
+        left: 33.6rem;
       }
     </style>
 </head>
@@ -130,7 +140,9 @@
       </section><br><br>
 
     </main>
-
+    <div class="inputSearch">
+      <img src="{{ asset('css/icons/grsearch.svg') }}" >
+    </div>
 </body>
 
 

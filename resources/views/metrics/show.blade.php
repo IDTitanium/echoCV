@@ -47,9 +47,7 @@
       <div class="container mt-2">
         <div class="row">
           <div class="col-md-9" style="height:20rem">
-            <!-- {!! $chart->id !!} -->
-            <!-- {!! $chart->api() !!} -->
-            <!-- {{ $chart->id }}_refresh(url) -->
+
             {!! $chart->container() !!}
           </div>
           <div class="col-md-3">
@@ -99,8 +97,8 @@
               <th>{{ $graph->id }}</th>
               <td>{{ $graph->name }}</td>
               <td>{{ $graph->desc }}</td>
-              <td>{{ $graph->aaa }}</td>
-              <td>{{ $graph->aaa1 }}{{ $graph->percent }}</td>
+              <td>{{ $graph->field1 }}</td>
+              <td>{{ $graph->value1 }}{{ $graph->percent }}</td>
               <td>{{ $graph->created_at }}</td>
             </tr>
             @endforeach

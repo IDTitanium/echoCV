@@ -16,6 +16,7 @@ class CreateMetTable extends Migration
         Schema::create('met', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('name1');
             $table->timestamps();
         });
     }

@@ -7,7 +7,7 @@ use Carbon\Carbon;
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Sent Reports</title>
+      <title>Saved Reports</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
       <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -89,17 +89,17 @@ use Carbon\Carbon;
                     <td></td>
                   </thead>
                   <tbody class="repMainTable" style="width:100vw">
-                  @if(count($reports) > 0)
+
                   @foreach ($reports as $report)
                     <tr>
                       <td class="tdt"><input type="checkbox" name="" value=""></td>
                       <td data-search="Tiger Nixon" class="tdDept">{{ $report->report_title }}</td>
-                      <td class="tdName">System Architect</td>
+                      <td class="tdName">{{ $userName }} {{ $lastName }}</td>
                       <td class="tdMsg">{{ $report->content }}</td>
                       <td class="tdTime">{{ Carbon::parse($report->created_at)->diffForHumans() }}</td>
                     </tr>
                   @endforeach
-                  @endif
+
                   </tbody>
                   <tbody class="repMobTable" style="width:100vw">
                     <tr style="display:flex!important; justify-content:flex-start;">

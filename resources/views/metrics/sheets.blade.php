@@ -32,6 +32,11 @@
       .display {
         margin-top: 3.5rem;
       }
+
+      .inputSearch {
+        top: 8.9rem;
+        left: 33.6rem;
+      }
     </style>
 </head>
 <body>
@@ -69,14 +74,14 @@
                 </tr>
               </thead>
               <tbody class="tdBody">
-                <tr id="">
-                  <td class="tdt"><input type="checkbox" class="checkbox" ></td>
-                  <td data-search="" class="" onclick="window.location='/metrics_kpi'">Sheet 1</td>
-                </tr>
-                <tr id="">
-                  <td class="tdt"><input type="checkbox" class="checkbox" ></td>
-                  <td data-search="" class="" onclick="window.location='/metrics_kpi'">Sheet 2</td>
-                </tr>
+                @if(count($graphs) > 0)
+                  @foreach($graphs as $graph)
+                  <tr id="tr_{{$graph->id}}">
+                    <td class="tdt"><input type="checkbox" class="checkbox" ></td>
+                    <td data-search="" class="" onclick="window.location='/metrics_kpi/{{ $graph->id }}'">{{ $graph->name }}</td>
+                  </tr>
+                  @endforeach
+                @endif
               </tbody>
             </table>
           </div>
@@ -84,7 +89,9 @@
       </section><br><br>
 
     </main>
-
+    <div class="inputSearch">
+      <img src="{{ asset('css/icons/grsearch.svg') }}" >
+    </div>
 </body>
 
 

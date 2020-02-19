@@ -82,14 +82,16 @@
                     <td>Actions</td>
                   </thead>
                   <tbody class="repMainTable" style="width:100vw">
+                    @foreach ($reports as $report)
                     <tr style="width:100%">
                       <td><input type="checkbox" name="" value=""></td>
-                      <td data-search="Tiger Nixon" class="tdDept conEmailPhone">20 receipients</td>
+                      <td data-search="Tiger Nixon" class="tdDept conEmailPhone">--- receipients</td>
                       <td class="tdName">Monthly</td>
-                      <td class="tdName">Message.... Message.... </td>
+                      <td class="tdName">{{ $report->content }}</td>
                       <td class="tdName">2 Nov 2020 12:00am</td>
                       <td class="tdSettings"><img src="{{ asset('css/icons/repSchSettings.png') }}" /></td>
                     </tr>
+                    @endforeach
                   </tbody>
                   <tbody class="repMobTable tdSchBody" style="width:100vw">
                     <tr style="display:flex!important; justify-content:flex-start;">
