@@ -18,6 +18,12 @@ use Mail;
 class ComposeMailController extends Controller
 {
 
+    // ********Access control for Reports********
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,8 +31,13 @@ class ComposeMailController extends Controller
      */
     public function index()
     {
-      $reports = Report::all();
-      return view('reports.all')->with('reports', $reports);
+      $loguser = Auth::user();
+      $userName = $loguser->fname;
+      $lastName = $loguser->lname;
+      $reports = DB::table('reports')->where('user_id', $loguser->id)->get();
+      // $reports = Report::all();
+      // dd($reports);
+      return view('reports.all')->with(compact('reports', 'userName', 'lastName'));
     }
 
     /**
@@ -58,7 +69,7 @@ class ComposeMailController extends Controller
   //   ]);
   //
   //
-  // //Create Contact
+  // //Create Report
   // $compose = new Compose;
   // $compose->subject =$request->input('subject');
   // $compose->title =$request->input('title');
@@ -73,61 +84,59 @@ class ComposeMailController extends Controller
   //     'btn1' => $compose->btn1
   // ];
 
+    $loguser = Auth::user();
+    $this->validate($request, [
+      'report_title' => 'required',
+      'content' => 'required',
+      'receiver' => 'required',
+      'image'  => 'image|nullable|max:1999'
+    ]);
 
-  $this->validate($request, [
-    'report_title' => 'required',
-    'content' => 'required',
-    'receiver' => 'required',
-    'image'  => 'image|nullable|max:1999'
-  ]);
+    if($request->hasFile('image')) {
+        $originName = $request->file('image')->getClientOriginalName();
+        $fileName = pathinfo($originName, PATHINFO_FILENAME);
+        $extension = $request->file('image')->getClientOriginalExtension();
+        $fileName = $fileName.'_'.time().'.'.$extension;
 
-  if($request->hasFile('image')) {
-      $originName = $request->file('image')->getClientOriginalName();
-      $fileName = pathinfo($originName, PATHINFO_FILENAME);
-      $extension = $request->file('image')->getClientOriginalExtension();
-      $fileName = $fileName.'_'.time().'.'.$extension;
-
-      $request->file('image')->storeAs('public/images', $fileName);
-      // $request->file('image')->move(public_path('images'), $fileName);
-
-
-  }
-
-  //Create Report
-  $report = new Report;
-  $report->report_title =$request->input('report_title');
-  $report->subject =$request->input('subject');
-  $report->receiver =$request->input('receiver');
-  $report->content =$request->input('content');
-  $report->image = $fileName;
-  // $report->user_id =$loguser->id;
-  // $report->company_id =$comp->id;
-  $report->status =$request->input('status');
-  $report->save();//Reports are saved in the DB here
-
-//Data of what is either sent or saved
-  $details = [
-      'receiver' => $report->receiver,
-      'subject' => $report->subject,
-      'title' => $report->report_title,
-      'body' => $report->content,
-      'status' => $report->status,
-      'image' => $report->image
-  ];
-// dd($details);
-  // $emails = array($details['receiver']);
-    $recipients = explode(', ', $details['receiver']);
-    // dd($recipients);
-    if($details['status'] == 'saved'){
-        return redirect('/reports')->with('success', 'Report Successful Saved, You can view it in Draft');//This is will lead to the draft
+        $request->file('image')->storeAs('public/images', $fileName);
+        // $request->file('image')->move(public_path('images'), $fileName);
       }
-      else if($details['status'] == 'scheduled'){
-        return view('/reports/samp')->with(compact('details'));
-          // return view('/reports/samp')->with('success', 'Preview the report');
-      }
-      else {
-          Mail::to($recipients)->send(new ReportsMail($details));
-        return redirect('/sent_report')->with('success', 'Report Successful Sent to Contact(s)');
+
+      //Create Report
+      $report = new Report;
+      $report->report_title = $request->input('report_title');
+      $report->subject = $request->input('subject');
+      $report->receiver = $request->input('receiver');
+      $report->content = $request->input('content');
+      $report->image = $fileName;
+      $report->user_id = $loguser->id;
+      // $report->company_id =$comp->id;
+      $report->status = $request->input('status');
+      $report->save();//Reports are saved in the DB here
+
+    //Data of what is either sent or saved
+      $details = [
+          'receiver' => $report->receiver,
+          'subject' => $report->subject,
+          'title' => $report->report_title,
+          'body' => $report->content,
+          'status' => $report->status,
+          'image' => $report->image
+      ];
+    // dd($details);
+      // $emails = array($details['receiver']);
+        $recipients = explode(', ', $details['receiver']);
+        // dd($recipients);
+        if($details['status'] == 'saved'){
+            return redirect('/reports')->with('success', 'Report Successful Saved, You can view it in Draft');//This is will lead to the draft
+          }
+          else if($details['status'] == 'scheduled'){
+            return view('/reports/samp')->with(compact('details'));
+              // return view('/reports/samp')->with('success', 'Preview the report');
+          }
+          else {
+              Mail::to($recipients)->send(new ReportsMail($details));
+            return redirect('/sent_report')->with('success', 'Report Successful Sent to Contact(s)');
       }
     }
 
@@ -140,7 +149,6 @@ class ComposeMailController extends Controller
     public function show($id)
     {
       $reports = Report::all();
-
       return view('reports.new_report1');
     }
 
@@ -178,34 +186,61 @@ class ComposeMailController extends Controller
         //
     }
 
+    /**
+     * Received report
+     */
+    public function received()
+    {
+      $loguser = Auth::user();
+      $userName = $loguser->fname;
+      $lastName = $loguser->lname;
+      $reports = DB::table('reports')
+      ->where('user_id', $loguser->id)
+      ->where('status', 'received')->get();
 
-    public function received() {
-      $receiverid = Auth::user()->email;
-
-      $reports = Report::where('receiver', '$receiverid')->get();
-      // $reports = DB::table('reports')->where('receiver', '$receiverid')->get();
-      return view('reports.received')->with('reports', $reports);
+      return view('reports.received')->with(compact('reports', 'loguser', 'userName', 'lastName'));;
     }
 
-    public function scheduled() {
-      return view('reports.scheduled');
+    /**
+     * Scheduled report
+     */
+    public function scheduled()
+    {
+      $loguser = Auth::user();
+      $userName = $loguser->fname;
+      $lastName = $loguser->lname;
+      $reports = DB::table('reports')
+      ->where('user_id', $loguser->id)
+      ->where('status', 'scheduled')->get();
+      return view('reports.scheduled')->with(compact('reports', 'loguser', 'userName', 'lastName'));
     }
 
-    public function sent() {
-      $senderid = Auth::user()->id;
-
-      $reports = Report::where('status', 'sent')->get();
-      // $reports = DB::table('reports')->where('user_id', $senderid)->get();
-      return view('reports.sent')->with('reports', $reports);
-
+    /**
+     * Sent report
+     */
+    public function sent()
+    {
+      $loguser = Auth::user();
+      $userName = $loguser->fname;
+      $lastName = $loguser->lname;
+      $reports = DB::table('reports')
+      ->where('user_id', $loguser->id)
+      ->where('status', 'sent')->get();
+      return view('reports.sent')->with(compact('reports', 'loguser', 'userName', 'lastName'));
     }
 
-    public function draft() {
-      $senderid = Auth::user()->id;
-
-      $reports = Report::where('status', 'saved')->get();
-      // $reports = DB::table('reports')->where('user_id', $senderid)->get();
-      return view('reports.draft')->with('reports', $reports);
+    /**
+     * Saved/Draft report
+     */
+    public function draft()
+    {
+      $loguser = Auth::user();
+      $userName = $loguser->fname;
+      $lastName = $loguser->lname;
+      $reports = DB::table('reports')
+      ->where('user_id', $loguser->id)
+      ->where('status', 'saved')->get();
+      return view('reports.draft')->with(compact('reports', 'loguser', 'userName', 'lastName'));
 
     }
 

@@ -3,7 +3,7 @@
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Single KPI</title>
+      <title>KPI</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
@@ -41,6 +41,11 @@
         box-shadow: 0 0 0 0 rgba(0,0,0,0)!important;
         outline: 0px auto -webkit-focus-ring-color;
       }
+
+      .inputSearch {
+        top: 7.9rem;
+        left: 33.6rem;
+      }
     </style>
 </head>
 <body>
@@ -60,8 +65,8 @@
       <section class="contactMain">
         <div class="sheetsTop d-flex">
           <h6 class="conEmailPhone mr-1" onclick="window.location='/metrics_sheets'">
-            Gillete Annual Income </h6>
-            <h6 onclick="window.location='/metrics_kpi'">- Sheet 1</h6>
+            {{ $graphs->name }} </h6>
+            <h6>- {{ $graphs->desc }}</h6>
         </div>
 
         <div class="widget-wrapper container-fluid" style="padding:0; margin:0">
@@ -77,45 +82,13 @@
               <thead class="tdHead">
                 <tr>
                   <td class="tdt"><input type="checkbox" id="check_all"></td>
-                  <td class="" style="min-width:74vw!important; padding-top: 0.8rem;">NAME</td>
+                  <td class="" style="min-width:74vw!important; padding-top: 0.8rem;">DESCRIPTION</td>
                 </tr>
               </thead>
               <tbody class="tdBody">
                 <tr id="">
                   <td class="tdt"><input type="checkbox" class="checkbox" ></td>
-                  <td data-search="" class="" onclick="window.location='/metrics_single_kpi'">Customer walk-in</td>
-                </tr>
-                <tr id="">
-                  <td class="tdt"><input type="checkbox" class="checkbox" ></td>
-                  <td data-search="" class="" onclick="window.location='/metrics_single_kpi'">Page clicks (Facebook)</td>
-                </tr>
-                <tr id="">
-                  <td class="tdt"><input type="checkbox" class="checkbox" ></td>
-                  <td data-search="" class="" onclick="window.location='/metrics_single_kpi'">Page clicks (Twitter)</td>
-                </tr>
-                <tr id="">
-                  <td class="tdt"><input type="checkbox" class="checkbox" ></td>
-                  <td data-search="" class="" onclick="window.location='/metrics_single_kpi'">Sales</td>
-                </tr>
-                <tr id="">
-                  <td class="tdt"><input type="checkbox" class="checkbox" ></td>
-                  <td data-search="" class="" onclick="window.location='/metrics_single_kpi'">Marketing Cost</td>
-                </tr>
-                <tr id="">
-                  <td class="tdt"><input type="checkbox" class="checkbox" ></td>
-                  <td data-search="" class="" onclick="window.location='/metrics_single_kpi'">Advertising Cost</td>
-                </tr>
-                <tr id="">
-                  <td class="tdt"><input type="checkbox" class="checkbox" ></td>
-                  <td data-search="" class="" onclick="window.location='/metrics_single_kpi'">Net income</td>
-                </tr>
-                <tr id="">
-                  <td class="tdt"><input type="checkbox" class="checkbox" ></td>
-                  <td data-search="" class="" onclick="window.location=''">Gross profit</td>
-                </tr>
-                <tr id="">
-                  <td class="tdt"><input type="checkbox" class="checkbox" ></td>
-                  <td data-search="" class="" onclick="window.location=''">Miscellenous expenses</td>
+                  <td data-search="" class="" onclick="window.location='/metrics_single_kpi/{{ $graphs->id }}'">{{ $graphs->desc }}</td>
                 </tr>
               </tbody>
             </table>
@@ -124,6 +97,9 @@
       </section><br><br>
 
     </main>
+    <div class="inputSearch">
+      <img src="{{ asset('css/icons/grsearch.svg') }}" >
+    </div>
 
 </body>
 

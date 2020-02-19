@@ -163,21 +163,21 @@ class MetricsController extends Controller
      */
     public function store(Request $request)
     {
-      $this->validate($request, [
-        'name' => 'required',
-        'desc' => 'required'
-      ]);
-
-    //Create Metrics
-    $graph = new Graph;
-    $graph->name =$request->input('name');
-    $graph->desc =$request->input('desc');
-    $graph->percent =$request->input('percent');
-    $graph->numb =$request->input('numb');
-    Excel::import(new ImportGraph, request()->file('file'));
-    $graph->save();
-
-    return redirect('/metrics/show/')->with('success', 'Metrics Successful Created with Excel Sheet');
+    //   $this->validate($request, [
+    //     'name' => 'required',
+    //     'desc' => 'required'
+    //   ]);
+    //
+    // //Create Metrics
+    // $graph = new Graph;
+    // $graph->name =$request->input('name');
+    // $graph->desc =$request->input('desc');
+    // $graph->percent =$request->input('percent');
+    // $graph->numb =$request->input('numb');
+    // Excel::import(new ImportGraph, request()->file('file'));
+    // $graph->save();
+    //
+    // return redirect('/metrics/show/')->with('success', 'Metrics Successful Created with Excel Sheet');
     }
 
     /**
@@ -188,8 +188,7 @@ class MetricsController extends Controller
      */
     public function show($id)
     {
-      $graphs = Graph::all();
-      // dd($graphs);
+      $graphs = Graph::find($id);
       return view('metrics.show')->with('graphs', $graphs);
     }
 
@@ -257,7 +256,8 @@ class MetricsController extends Controller
    public function import(Request $request)
    {
        Excel::import(new ImportGraph, request()->file('file'));
-       return redirect('/metrics/show/')->with('success', 'Excel Sheet Successful Uploaded');
+       return redirect('/metrics')->with('success', 'Excel Sheet Successful Uploaded');
+       // return view('metrics.show')->with('success', 'Excel Sheet Successful Uploaded');
 
      //   $this->validate($request, [
      //     'name' => 'required',
@@ -290,18 +290,24 @@ class MetricsController extends Controller
    {
       $graphs = Graph::all();
       return view('metrics.spreadsheets')->with('graphs', $graphs);
+      // $graphs = Graph::find($id);
+      // return view('metrics.spreadsheets')->with('graphs', $graphs);
    }
 
-   public function kpi()
+   public function metricsKpi($id)
    {
-      $graphs = Graph::all();
+      // $graphs = Graph::all();
+      // return view('metrics.kpi')->with('graphs', $graphs);
+      $graphs = Graph::find($id);
       return view('metrics.kpi')->with('graphs', $graphs);
    }
 
-   public function kpis()
+   public function metricsSingleKpi($id)
    {
-      $graphs = Graph::all();
-      return view('metrics.kpi_value')->with('graphs', $graphs);
+      // $graphs = Graph::all();
+      // return view('metrics.kpi_value')->with('graphs', $graphs);
+      $graphs = Graph::find($id);
+      return view('metrics.single_kpi')->with('graphs', $graphs);
    }
 
 }

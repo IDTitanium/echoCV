@@ -71,11 +71,11 @@ Route::post('/delete/file/{id}', 'FileController@delete')->name('file.delete');
 
 //Route for Metrics
 Route::resource('metrics', 'MetricsController');
-Route::get('metrics/show/', 'MetricsController@build');
+Route::get('metrics_display', 'MetricsController@build');
 Route::get('metrics_sheets', 'MetricsController@sheets');
 Route::get('metrics_spreadsheets', 'MetricsController@spreadsheets');
-Route::get('metrics_kpi', 'MetricsController@kpi');
-Route::get('metrics_single_kpi', 'MetricsController@kpis');
+Route::get('metrics_kpi/{id}', 'MetricsController@metricsKpi');
+Route::get('metrics_single_kpi/{id}', 'MetricsController@metricsSingleKpi');
 
 
 //****Importing and Exporting Excel sheets
@@ -92,11 +92,6 @@ Route::get('/sample_report', 'ComposeMailController@sample');
 Route::get('/draft_report', 'ComposeMailController@draft');
 // Route::post('/reports/', 'ComposeMailController@store');
 
-
-Route::get('ckeditor', 'CkeditorController@index');
-Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');
-Route::resource('test', 'TestingController');
-Route::post('testing/upload', 'TestingController@upload')->name('testing.upload');
 
 //For google sheets
 Route::get('google_test', 'MetricsController');

@@ -89,19 +89,17 @@ use Carbon\Carbon;
                     <td></td>
                   </thead>
                   <tbody class="repMainTable" style="width:100vw">
-                  @if(count($reports) > 0)
+
                   @foreach ($reports as $report)
                     <tr>
                       <td class="tdt"><input type="checkbox" name="" value=""></td>
                       <td data-search="Tiger Nixon" class="tdDept">{{ $report->report_title }}</td>
-                      <td class="tdName">
-                        <img style="width:5rem" src="/storage/images/{{ $report->image }}" alt="">
-                      </td>
+                      <td class="tdName">{{ $userName }} {{ $lastName }}</td>
                       <td class="tdMsg">{{ $report->content }}</td>
                       <td class="tdTime">{{ Carbon::parse($report->created_at)->diffForHumans() }}</td>
                     </tr>
                   @endforeach
-                  @endif
+
                   </tbody>
                   <tbody class="repMobTable" style="width:100vw">
                     <tr style="display:flex!important; justify-content:flex-start;">
