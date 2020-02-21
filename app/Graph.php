@@ -11,8 +11,8 @@ class Graph extends Model
 
 
   protected $fillable = [
-  'name', 'desc', 'percent', 'numb', 'field1', 'field2', 'field3', 'field4', 'field5', 'field6', 
-  'field7', 'field8', 'field9', 'field10', 'field11', 'field12', 'value1', 'value2', 'value3',
-  'value4', 'value5', 'value6', 'value7', 'value8', 'value9', 'value10', 'value11', 'value12'
+  'name', 'desc', 'Date', 'Revenue', 'Cost_of_Goods_Sold', 'Gross_Profit', 'Payroll', 'Contactors', 'Marketing_Expenses', 'Office_Rent_&_Expenses',
+  'Web_Services_&_Utilities', 'Travel_&_Entertainment', 'Total_Expenses', 'Net_Income', 'Cash_on_Hand', 'Months_of_Runway', 'Product_KPI_1', 'Product_KPI_2', 'Product_KPI_3',
+  'Marketing_KPI_1', 'Marketing_KPI_2', 'Marketing_KPI_3', 'Sales_KPI_1', 'Sales_KPI_2', 'Sales_KPI_3', 'Customer_Success_KPI_1', 'Customer_Success_KPI_2', 'Customer_Success_KPI_3'
   ];
 }
