@@ -19,8 +19,6 @@ class ImportGraph implements ToModel, WithValidation, WithHeadingRow
     public function model(array $row)
     {
         return new Graph([
-          'name'  => $row['name'],
-          'desc' => $row['description'],
           'Date'  => $row['date'],
           'Revenue' => $row['revenue'],
           'Cost_of_Goods_Sold'  => $row['cost_of_goods_sold'],

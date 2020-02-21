@@ -77,8 +77,8 @@
                 @if(count($graphs) > 0)
                   @foreach($graphs as $graph)
                   <tr id="tr_{{$graph->id}}">
-                    <td class="tdt"><input type="checkbox" class="checkbox" ></td>
-                    <td data-search="" class="" onclick="window.location='/metrics_kpi/{{ $graph->id }}'">{{ $graph->name }}</td>
+                    <td class="tdt"><input type="checkbox" class="checkbox" data-id="{{$graph->id}}"></td>
+                    <td data-search="" class="" onclick="window.location='/metrics_kpi/{{ $graph->id }}'">{{ $graph->Date }}</td>
                   </tr>
                   @endforeach
                 @endif
@@ -175,7 +175,7 @@
 
 </script>
 
-
+<!-- Delete Metrics -->
 
 <script type="text/javascript">
 
@@ -215,7 +215,7 @@
                     var strIds = idsArr.join(",");
 
                     $.ajax({
-                        url: "{{ route('contact.multiple-delete') }}",
+                        url: "{{ route('metrics.multiple-delete') }}",
                         type: 'DELETE',
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                         data: 'ids='+strIds,
