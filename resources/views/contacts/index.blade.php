@@ -177,7 +177,7 @@
 </script>
 
 
-
+<!-- Delete Contacts -->
 <script type="text/javascript">
 
     $(document).ready(function () {
