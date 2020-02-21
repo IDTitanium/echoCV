@@ -65,8 +65,8 @@
       <section class="contactMain">
         <div class="sheetsTop d-flex">
           <h6 class="conEmailPhone mr-1" onclick="window.location='/metrics_sheets'">
-            {{ $graphs->name }} </h6>
-            <h6>- {{ $graphs->desc }}</h6>
+            {{ $graphs->Date }} </h6>
+            <h6>- {{ $graphs->Revenue }}</h6>
         </div>
 
         <div class="widget-wrapper container-fluid" style="padding:0; margin:0">
@@ -82,13 +82,13 @@
               <thead class="tdHead">
                 <tr>
                   <td class="tdt"><input type="checkbox" id="check_all"></td>
-                  <td class="" style="min-width:74vw!important; padding-top: 0.8rem;">DESCRIPTION</td>
+                  <td class="" style="min-width:74vw!important; padding-top: 0.8rem;">Revenue</td>
                 </tr>
               </thead>
               <tbody class="tdBody">
                 <tr id="">
                   <td class="tdt"><input type="checkbox" class="checkbox" ></td>
-                  <td data-search="" class="" onclick="window.location='/metrics_single_kpi/{{ $graphs->id }}'">{{ $graphs->desc }}</td>
+                  <td data-search="" class="" onclick="window.location='/metrics_single_kpi/{{ $graphs->id }}'">{{ $graphs->Revenue }}</td>
                 </tr>
               </tbody>
             </table>

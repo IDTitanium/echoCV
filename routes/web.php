@@ -76,6 +76,7 @@ Route::get('metrics_sheets', 'MetricsController@sheets');
 Route::get('metrics_spreadsheets', 'MetricsController@spreadsheets');
 Route::get('metrics_kpi/{id}', 'MetricsController@metricsKpi');
 Route::get('metrics_single_kpi/{id}', 'MetricsController@metricsSingleKpi');
+Route::delete('metrics_sheets', ['as'=>'metrics.multiple-delete','uses'=>'MetricsController@deleteMultipleMetrics']);
 
 
 //****Importing and Exporting Excel sheets

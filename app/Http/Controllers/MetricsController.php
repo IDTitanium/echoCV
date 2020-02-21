@@ -310,4 +310,16 @@ class MetricsController extends Controller
       return view('metrics.single_kpi')->with('graphs', $graphs);
    }
 
+   /**
+    * Remove all contacts from storage.
+    *
+    */
+   public function deleteMultipleMetrics(Request $request)
+   {
+       $ids = $request->ids;
+       Graph::whereIn('id', explode(",",$ids))->delete();
+
+       return response()->json(['status'=>true,'message'=>"Metric(s) deleted successfully."]);
+   }
+
 }

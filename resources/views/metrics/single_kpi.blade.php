@@ -72,8 +72,8 @@ use Carbon\Carbon;
       <section class="contactMain">
         <div class="sheetsTop d-flex">
           <h6 class="conEmailPhone mr-1" onclick="window.location='/metrics_sheets'">
-            {{ $graphs->name }} </h6>
-            <h6 onclick="window.location='/metrics_kpi/{{ $graphs->id }}'" class="conEmailPhone mr-1">- {{ $graphs->desc }}</h6>
+            {{ $graphs->Date }} </h6>
+            <h6 onclick="window.location='/metrics_kpi/{{ $graphs->id }}'" class="conEmailPhone mr-1">- {{ $graphs->Revenue }}</h6>
             <h6>- Added {{ Carbon::parse($graphs->created_at)->diffForHumans() }}</h6>
         </div>
 
@@ -89,52 +89,52 @@ use Carbon\Carbon;
               </thead>
               <tbody class="tdBody">
                 <tr id="">
-                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field1 }}</td>
-                  <td class="">{{ $graphs->value1 }}</td>
+                  <td class="">Product KPI 1</td>
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->Product_KPI_1 }}</td>
                 </tr>
                 <tr id="">
-                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field2 }}</td>
-                  <td class="">{{ $graphs->value2 }}</td>
+                  <td class="">Product KPI 2</td>
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->Product_KPI_2 }}</td>
                 </tr>
                 <tr id="">
-                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field3 }}</td>
-                  <td class="">{{ $graphs->value3 }}</td>
+                  <td class="">Product KPI 3</td>
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->Product_KPI_3 }}</td>
                 </tr>
                 <tr id="">
-                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field4 }}</td>
-                  <td class="">{{ $graphs->value4 }}</td>
+                  <td class="">Marketing KPI 1</td>
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->Marketing_KPI_1 }}</td>
                 </tr>
                 <tr id="">
-                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field5 }}</td>
-                  <td class="">{{ $graphs->value5 }}</td>
+                  <td class="">Marketing KPI 2</td>
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->Marketing_KPI_2 }}</td>
                 </tr>
                 <tr id="">
-                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field6 }}</td>
-                  <td class="">{{ $graphs->value6 }}</td>
+                  <td class="">Marketing KPI 3</td>
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->Marketing_KPI_3 }}</td>
                 </tr>
                 <tr id="">
-                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field7 }}</td>
-                  <td class="">{{ $graphs->value7 }}</td>
+                  <td class="">Sales KPI 1</td>
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->Sales_KPI_1 }}</td>
                 </tr>
                 <tr id="">
-                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field8 }}</td>
-                  <td class="">{{ $graphs->value8 }}</td>
+                  <td class="">Sales KPI 2</td>
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->Sales_KPI_2 }}</td>
                 </tr>
                 <tr id="">
-                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field9 }}</td>
-                  <td class="">{{ $graphs->value9 }}</td>
+                  <td class="">Sales KPI 3</td>
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->Sales_KPI_3 }}</td>
                 </tr>
                 <tr id="">
-                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field10 }}</td>
-                  <td class="">{{ $graphs->value10 }}</td>
+                  <td class="">Customer Success KPI 1</td>
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->Customer_Success_KPI_1 }}</td>
                 </tr>
                 <tr id="">
-                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field11 }}</td>
-                  <td class="">{{ $graphs->value11 }}</td>
+                  <td class="">Customer Success KPI 2</td>
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->Customer_Success_KPI_2 }}</td>
                 </tr>
                 <tr id="">
-                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->field12 }}</td>
-                  <td class="">{{ $graphs->value12 }}</td>
+                  <td class="">CustomerSuccess KPI 3</td>
+                  <td data-search="" class="" onclick="window.location=''">{{ $graphs->Customer_Success_KPI_3 }}</td>
                 </tr>
               </tbody>
             </table>
