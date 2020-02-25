@@ -37,7 +37,7 @@
           <div class="mobo">  
           <form class="form-inline form-search"  >
                 <label class="sr-only" for="inlineFormInputName2"></label>
-                <input type="search" class="form-control search-form mb-2  mr-sm-2" style="width: 24rem"="inlineFormInputName2" placeholder="Search files">
+                <input type="search" class="form-control search-form mb-2  mr-sm-2" style="width: 24rem" placeholder="Search files" name="keyword">
               
                 <button type="submit" class="btn btn-primary search-btn btn-sm mb-2 p-2">
                   <svg class="svg" width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -66,20 +66,21 @@
         {{-- cards --}}
         @if($companyData)
         @foreach ($companyData as $company)
-        <a href="/portfolio_company/single_company/".$company->id>
         <div class="row ml-2 mt-5 col-md-12 col-sm-12 carder">
                  <div class="card col-md-3 col-sm-6" >
+         <a href="/portfolio_company/single_company/".$company->id>
+
                     <img src="{{ asset('css/icons/sony.png') }}" class="card-img-top mt-3" alt="...">
+        </a>
                    <div class="mt-2">
                         <p class="float-left">{{$company->c_name}} </p>
                         <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
                    </div>  
                    
                    <p> Lead: {{$company->lead}}</p>
-                   <p> Analyst: {{$company-> analyst}}</p>
+                   <p> Analyst: {{$company->analyst}}</p>
                    
                 </div>
-    </a>
         </div>
         @endforeach
         @endif

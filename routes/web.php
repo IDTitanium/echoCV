@@ -18,9 +18,8 @@ Route::get('/home', function () { return view('home.index'); });
 Route::get('/file_upload', function () { return view('files.file_upload'); });
 Route::get('/archives', function () { return view('archives.archives'); });
 Route::get('/archivelist', function () { return view('archives.archivelist'); });
-// Route::get('/company_list', function () { return view('portfolio_company.company_list'); });
-// Route::get('/create_metrics', function () { return view('metrics.create'); });
 Route::get('/add_metrics', function () { return view('metrics.add'); });
+//company routing
 Route::get('/single_company', function () { return view('portfolio_company.single_company'); });
 Route::get('/dashboard', function () { return view('home.dashboard'); });
 Route::get('/new_company', function () { return view('portfolio_company.new_company'); });
@@ -28,6 +27,8 @@ Route::get('/add_company', function () { return view('portfolio_company.add_comp
 Route::get('/funding', function () { return view('portfolio_company.funding'); });
 Route::get('/dashboard1', function () { return view('home.dashboard1'); });
 Route::get('/add_chart', function () { return view('home.add_chart'); });
+//end get method for company routing
+
 Route::get('/export_report', function () { return view('home.export_report'); });
 Route::get('/profile', function () { return view('account_settings.profile'); });
 Route::get('/permissions', function () { return view('account_settings.permissions'); });
@@ -43,12 +44,24 @@ Route::get('/investor_update', function () { return view('email.investor_update'
 
 Auth::routes();
 
-
-// Route::get('/home', 'HomeController@index')->name('home');
-
+//route for company
 Route::get('/add_company', 'CompanyController@create')->name('create.company');
 Route::get('/company_list', 'CompanyController@getData');
 Route::post('/add_company', 'CompanyController@store')->name('store.company');
+Route::post('/',function(){
+$keyword =input::get ('keyword');
+
+//query product model
+$company = company::where('title','LIKE','&'.$keyword.'&')->get();
+var_dump ('search results');
+foreach($companyData as $company){
+    var_dump($company->c_name);
+}
+});
+
+
+
+
 //Route for Contacts
 Route::resource('contacts', 'ContactsController');
 Route::delete('contacts', ['as'=>'contact.multiple-delete','uses'=>'ContactsController@deleteMultiple']);
