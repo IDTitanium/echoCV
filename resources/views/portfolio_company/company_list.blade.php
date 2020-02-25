@@ -64,131 +64,25 @@
         </div>
         <hr class="horizontal mobileOnly shadow">
         {{-- cards --}}
+        @if($companyData)
+        @foreach ($companyData as $company)
+        <a href="/portfolio_company/single_company/".$company->id>
         <div class="row ml-2 mt-5 col-md-12 col-sm-12 carder">
-            
-                <div class="card col-md-3 col-sm-6" >
+                 <div class="card col-md-3 col-sm-6" >
                     <img src="{{ asset('css/icons/sony.png') }}" class="card-img-top mt-3" alt="...">
                    <div class="mt-2">
-                        <p class="float-left">sony </p>
+                        <p class="float-left">{{$company->c_name}} </p>
                         <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
                    </div>  
                    
-                   <p> Lead: Maria</p>
-                   <p> Analyst: Bimpe</p>
+                   <p> Lead: {{$company->lead}}</p>
+                   <p> Analyst: {{$company-> analyst}}</p>
                    
                 </div>
-
-                <div class="card col-md-3  col-sm-12">
-                    <img src="{{ asset('css/icons/netflix.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left">  Netlix </p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> Lead: Matthew</p>
-                   <p> Analyst: Bimpe</p>
-                   
-                </div>
-
-                <div class="card col-md-3 " >
-                    <img src="{{ asset('css/icons/macd.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left"> McDonald's </p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> Lead: Matthew</p>
-                   <p> Analyst: Bimpe</p>
-                   
-                </div>
-
-                <div class="card col-md-3 " >
-                    <img src="{{ asset('css/icons/ninten.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left"> Nintendo </p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> Lead: Mark</p>
-                   <p> Analyst: Bimpe</p>
-                   
-                </div>
-
-                <div class="card col-md-3 " >
-                    <img src="{{ asset('css/icons/master.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left"> MasterCard </p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> Lead: Fisayo</p>
-                   <p> Analyst: Osamudiamen </p>
-                   
-                </div>
-
-                <div class="card col-md-3 " >
-                    <img src="{{ asset('css/icons/electric.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left"> General Electric </p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> Lead: Matthew</p>
-                   <p> Analyst: Bimpe</p>
-                   
-                </div>
-
-                <div class="card col-md-3 " >
-                    <img src="{{ asset('css/icons/pizza.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left"> Pizza Hut </p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> Lead: Matthew</p>
-                   <p> Analyst: Bimpe</p>
-                   
-                </div>
-
-                <div class="card col-md-3 " >
-                    <img src="{{ asset('css/icons/mit.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left"> Mitsubishi </p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> Lead: Damilola</p>
-                   <p> Analyst: Bimpe</p>
-                   
-                </div>
-
-                <div class="card col-md-3 " >
-                    <img src="{{ asset('css/icons/life.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left"> LifeBank </p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> Lead: Tsendai</p>
-                   <p> Analyst: Bimpe</p>
-                   
-                </div>
-<a href="#">
-                <div class="card col-md-3 " >
-                    <img src="{{ asset('css/icons/ibm.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left"><I></I></p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> lead</p>
-                   <p> Analyst: Bimpe</p>
-                   
-                </div>
-                </a>
-
-            
+    </a>
         </div>
+        @endforeach
+        @endif
     </section>
     <script>
 function myFunction(evt) {

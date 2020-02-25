@@ -33,13 +33,14 @@
         <p style="color: #19B9FD;" class="backText" > <i class="fas fa-chevron-left"> </i><a href="../add_chart" style="color: #19B9FD;"> Back to portfolio companies </a></p>
         <hr class="ml-n5">
       </div>
-
+@if ($companyData)
+@foreach ($companyData as $company)
       <div class="row page-setup">
         <div class="col-md-8 col-sm-12 ">
           <div class="row life-section">
             <img src="{{ asset('css/icons/life.png') }}" class="life-img" alt="">
             <div class="col life-bank col-sm-12">
-              <h3> LifeBank</h3>
+              <h3> {{$company->c_name}}</h3>
               <p>
                 LifeBank is a smart blood system saving lives in Lagos by speeding up blood donations and deliveries
               </p>
@@ -56,7 +57,7 @@
                       <i class="fas fa-map-marker-alt"></i>
                       Abuja
                     </li>
-                    <li class="ml-3 other"><i class="fas fa-globe"></i> www.lifebank.org</li>
+                    <li class="ml-3 other"><i class="fas fa-globe"></i> {{$company->website}}</li>
                     <li class="ml-3 other"><i class="far fa-envelope"></i> hello@lifebank.ng</li>
                     <li class="ml-3"><i class="fas fa-tags"></i> B2C, Healthcare</li>
                     
@@ -539,7 +540,8 @@
         </div>
       </div>
       
-
+@endforeach
+@endif
     </section>
     </body>
 </html>

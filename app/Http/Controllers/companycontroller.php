@@ -94,17 +94,6 @@ class CompanyController extends Controller
         return redirect('add_company')->with('success', 'Company details saved!');
         return $request->all();
         //
-        /*   $company = new company;
-        $company -> name = request ('name')
-        $company -> website = request ('website')
-        $company -> country = request ('country')
-        $company -> status = request ('status')
-        $company -> stage = request ('stage')
-        $company -> lead = request ('lead')
-        $company -> analyst = request ('analyst')
-
-              $company->save();
-        */
     }
 
     /**
@@ -113,8 +102,17 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function getData()
     {
+        $company = Company::getAllCompanydata();
+        if (count($company) > 0)
+        {
+            return view('portfolio_company.company_list', ['companyData' => $company]);
+        }
+        else
+        {
+            return view ('portfolio_company.company_list');
+        }
         //
     }
 

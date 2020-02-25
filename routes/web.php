@@ -18,7 +18,7 @@ Route::get('/home', function () { return view('home.index'); });
 Route::get('/file_upload', function () { return view('files.file_upload'); });
 Route::get('/archives', function () { return view('archives.archives'); });
 Route::get('/archivelist', function () { return view('archives.archivelist'); });
-Route::get('/company_list', function () { return view('portfolio_company.company_list'); });
+// Route::get('/company_list', function () { return view('portfolio_company.company_list'); });
 // Route::get('/create_metrics', function () { return view('metrics.create'); });
 Route::get('/add_metrics', function () { return view('metrics.add'); });
 Route::get('/single_company', function () { return view('portfolio_company.single_company'); });
@@ -47,6 +47,7 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/add_company', 'CompanyController@create')->name('create.company');
+Route::get('/company_list', 'CompanyController@getData');
 Route::post('/add_company', 'CompanyController@store')->name('store.company');
 //Route for Contacts
 Route::resource('contacts', 'ContactsController');
