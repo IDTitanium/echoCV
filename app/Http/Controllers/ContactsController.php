@@ -25,7 +25,7 @@ class ContactsController extends Controller
         // $contacts = Contact::orderBy('created_at', 'desc')->paginate(10);
         // $contacts = Contact::orderBy('created_at', 'desc');
         $contacts = Contact::all();
-        return view('contact.index')->with('contacts', $contacts);
+        return view('contacts.index')->with('contacts', $contacts);
     }
 
     /**
