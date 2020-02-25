@@ -3,6 +3,7 @@
 
 @stop
 @section('content')
+
         <section class="header searchContact">
           <div class="rep">Reports</div>
           <a href="/reports/create" class="btn btn-primary searchContact repTopBtn">New Report</a>
@@ -15,9 +16,9 @@
               <a class="repTitle"  href="/reports">
                 <img src="{{ asset('css/icons/repAll.svg') }}">ALL</a>
             </li>
-            <li role="presentation" class="active">
+            <li role="presentation">
               <a class="repTitle"  href="/sent_report">
-                <img src="{{ asset('css/icons/repSent1.svg') }}">SENT</a>
+                <img src="{{ asset('css/icons/repSent.svg') }}">SENT</a>
             </li>
             <li role="presentation">
               <a class="repTitle" href="/received_report">
@@ -27,7 +28,7 @@
               <a class="repTitle" href="/scheduled_report">
                 <img src="{{ asset('css/icons/repSch.svg') }}">SCHEDULED</a>
             </li>
-            <li role="presentation">
+            <li role="presentation" class="active">
               <a class="repTitle" href="/draft_report">
                 <img src="{{ asset('css/icons/repDra.svg') }}">DRAFT</a>
             </li>
@@ -93,7 +94,4 @@
             </div>
 
           </div>
-
-        </section>
-
-      @stop
+  @stop

@@ -14,25 +14,28 @@ Route::get('/', function () { return view('auth.login'); });
 
 // Route::group(['middleware' => ['web','auth','admin','verified']], function () {
 Route::get('/home', function () { return view('home.index'); });
-Route::get('/create', function () { return view('metrics.create'); });
-Route::get('/create1', function () { return view('metrics.'); });
 // Route::get('/files', function () { return view('files.files'); });
 Route::get('/file_upload', function () { return view('files.file_upload'); });
 Route::get('/archives', function () { return view('archives.archives'); });
 Route::get('/archivelist', function () { return view('archives.archivelist'); });
-Route::get('/company_list', function () { return view('portfolio_company.company_list'); });
-// Route::get('/create_metrics', function () { return view('metrics.create'); });
 Route::get('/add_metrics', function () { return view('metrics.add'); });
+//company routing
 Route::get('/single_company', function () { return view('portfolio_company.single_company'); });
 Route::get('/dashboard', function () { return view('home.dashboard'); });
 Route::get('/new_company', function () { return view('portfolio_company.new_company'); });
 Route::get('/add_company', function () { return view('portfolio_company.add_company'); });
+Route::get('/funding', function () { return view('portfolio_company.funding'); });
 Route::get('/dashboard1', function () { return view('home.dashboard1'); });
+Route::get('/add_chart', function () { return view('home.add_chart'); });
+//end get method for company routing
+
+Route::get('/export_report', function () { return view('home.export_report'); });
 Route::get('/profile', function () { return view('account_settings.profile'); });
 Route::get('/permissions', function () { return view('account_settings.permissions'); });
-Route::get('/sample_reports', function () { return view('reports.sample'); });
 Route::get('/new_user', function () { return view('invites.new_user'); });
 Route::get('/deleteFileModal', function () { return view('inc.deleteFileModal'); });
+Route::get('/email_invite', function () { return view('email.email_invite'); });
+Route::get('/investor_update', function () { return view('email.investor_update'); });
 
 //close the middileware for client
 // });
@@ -41,21 +44,35 @@ Route::get('/deleteFileModal', function () { return view('inc.deleteFileModal');
 
 Auth::routes();
 
-
-// Route::get('/home', 'HomeController@index')->name('home');
-
+//route for company
 Route::get('/add_company', 'CompanyController@create')->name('create.company');
+Route::get('/company_list', 'CompanyController@getData');
 Route::post('/add_company', 'CompanyController@store')->name('store.company');
-Route::resource('contact', 'ContactsController');
-Route::get('/contacts', 'ContactsController@home');
-Route::delete('contact', ['as'=>'contact.multiple-delete','uses'=>'ContactsController@deleteMultiple']);
-Route::resource('reports', 'ReportsController');
-Route::get('/received_report', 'ReportsController@received');
-Route::get('/sent_report', 'ReportsController@sent');
-Route::get('/scheduled_report', 'ReportsController@scheduled');
-Route::get('/new_report', 'ReportsController@create');
-Route::get('/sample_report', 'ReportsController@sample');
-Route::get('/real_report', 'ReportsController@real');
+Route::post('/',function(){
+$keyword =input::get ('keyword');
+
+//query product model
+$company = company::where('title','LIKE','&'.$keyword.'&')->get();
+var_dump ('search results');
+foreach($companyData as $company){
+    var_dump($company->c_name);
+}
+});
+
+
+
+
+//Route for Contacts
+Route::resource('contacts', 'ContactsController');
+Route::delete('contacts', ['as'=>'contact.multiple-delete','uses'=>'ContactsController@deleteMultiple']);
+// Route::resource('reports', 'ReportsController');
+// Route::get('/received_report', 'ReportsController@received');
+// Route::get('/sent_report', 'ReportsController@sent');
+// Route::get('/scheduled_report', 'ReportsController@scheduled');
+// Route::get('/new_report1', 'ReportsController@create');
+// Route::get('/sample_report', 'ReportsController@sample');
+// Route::get('/real_report', 'ReportsController@real');
+// Route::post('/reports/', 'ReportsController@store');
 
 
 // Route::get('/profile', 'ProfileController@profileindex');
@@ -66,13 +83,29 @@ Route::post('/file/upload', 'FileController@store')->name('file.upload');
 Route::post('/delete/file/{id}', 'FileController@delete')->name('file.delete');
 
 
+//Route for Metrics
+Route::resource('metrics', 'MetricsController');
+Route::get('metrics_display', 'MetricsController@build');
+Route::get('metrics_sheets', 'MetricsController@sheets');
+Route::get('metrics_spreadsheets', 'MetricsController@spreadsheets');
+Route::get('metrics_kpi/{id}', 'MetricsController@metricsKpi');
+Route::get('metrics_single_kpi/{id}', 'MetricsController@metricsSingleKpi');
+Route::delete('metrics_sheets', ['as'=>'metrics.multiple-delete','uses'=>'MetricsController@deleteMultipleMetrics']);
 
-Route::resource('create_metrics', 'MetricsController');
-Route::get('metrics/show/', 'MetricsController@build');
+
+//****Importing and Exporting Excel sheets
 Route::get('import-export', 'MetricsController@importExport');
 Route::post('import', 'MetricsController@import')->name('import');
 Route::get('export', 'MetricsController@export');
 
+//Route for Reports
+Route::resource('reports', 'ComposeMailController');
+Route::get('/received_report', 'ComposeMailController@received');
+Route::get('/sent_report', 'ComposeMailController@sent');
+Route::get('/scheduled_report', 'ComposeMailController@scheduled');
+Route::get('/sample_report', 'ComposeMailController@sample');
+Route::get('/draft_report', 'ComposeMailController@draft');
+// Route::post('/reports/', 'ComposeMailController@store');
 
 
 //For google sheets

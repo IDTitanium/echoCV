@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMetTable extends Migration
+class CreateComposesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateMetTable extends Migration
      */
     public function up()
     {
-        Schema::create('met', function (Blueprint $table) {
+        Schema::create('composes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('name1');
+            $table->string('subject');
+            $table->string('title');
+            $table->string('body');
+            $table->bigInteger('btn1')->unsigned()->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateMetTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('met');
+        Schema::dropIfExists('composes');
     }
 }

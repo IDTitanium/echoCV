@@ -43,4 +43,9 @@ class Company extends Model
     {
         return $this->hasOne(Report::class);
     }
+
+    public static function getAllCompanyData()
+    {
+        return self::all();
+    }
 }

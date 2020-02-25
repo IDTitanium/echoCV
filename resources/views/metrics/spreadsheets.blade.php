@@ -1,16 +1,21 @@
+<?php
+use Carbon\Carbon;
+
+?>
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Contacts</title>
+      <title>Sheet of Spreadsheet</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
     <!-- Styles -->
     <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
     <link href="{{ asset('css/report.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/contactTable.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/metricsTable.css') }}" rel="stylesheet">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link ‎href="https://fonts.googleapis.com/css?family=europa:200,600" rel="stylesheet">
@@ -21,9 +26,39 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation/1.0.5/bootstrap-confirmation.min.js"></script>
-    <script src="{{ asset('js/jquery.contact.js') }}" defer></script>
+    <script src="{{ asset('js/jquery.metrics.js') }}" defer></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <style media="screen">
+      .btnDelAll {
+        top: 9.4rem;
+        border-bottom: 1px solid #dee2e6;
+        width: 80vw;
+        left: 1.2rem;
+      }
+
+      .userSheets {
+        cursor: pointer;
+        padding-bottom: 0.5rem;
+      }
+
+      .userSheets:hover {
+        border-bottom: 2px solid #19B9FD;
+      }
+
+      .userSheets1 {
+        padding-top: 0.8rem;
+      }
+
+      .display {
+        margin-top: 2.5rem;
+      }
+
+      .inputSearch {
+        top: 8.9rem;
+        left: 33.6rem;
+      }
+    </style>
 </head>
 <body>
 
@@ -35,56 +70,79 @@
     </div>
     <main class="wholeContent">
       <section class="header searchContact">
-        <div class="rep">Contacts</div>
-        <a href="/contact/create" class="btn btn-primary searchContact conTopBtn">Create Contact</a>
-      </section>
+        <div class="rep">Metrics</div>
 
+      </section>
+      <!-- <ul class="nav nav-tabs nav-lg" role="tablist">
+        <li class="active" role="presentation">
+          <a class="repTitle"  href="/reports">ALL</a>
+        </li>
+        <li role="presentation">
+          <a class="repTitle"  href="/sent_report">SENT</a>
+        </li>
+        <li role="presentation">
+          <a class="repTitle" href="/received_report">RECEIVED</a>
+        </li>
+        <li role="presentation">
+          <a class="repTitle" href="/scheduled_report">SCHEDULED</a>
+        </li>
+      </ul> -->
       <section class="contactMain">
         <div class="widget-wrapper container-fluid" style="padding:0; margin:0">
           <div class="section-wrap-b table-responsive">
+
             <div class="d-flex justify-content-flex-start btnDelAll">
-              <button class="delete-all mr-3 btnConTable" data-url=""><img src="{{ asset('css/icons/metricdel.svg') }}"/></button>
-              <button class="pr-4 btnConTable1" data-url=""><img src="{{ asset('css/icons/conArch.svg') }}"/></button>
-              <div class=""></div>
+              <div class="mr-4 userSheets userSheets1" onclick="window.location=''">+ New data source</div>
+              <div class="mr-4 userSheets userSheets1" onclick="window.location='/metrics'">User Provided</div>
+              <div class="mr-4 userSheets d-flex" onclick="window.location=''">
+                <img src="{{ asset('css/icons/sheet.svg') }}" />
+                <div class="">Google Sheets <br> Sheet1 EchoCV</div>
+              </div>
+              <div class="mr-4 userSheets d-flex" onclick="window.location=''">
+                <img src="{{ asset('css/icons/sheet.svg') }}" />
+                <div class="">Google Sheets <br>Sheet5 EchoCV</div>
+              </div>
             </div>
 
             <table id="mySearchableData" class="display table table-hover table-responsive">
               <thead class="tdHead">
                 <tr>
                   <td class="tdt"><input type="checkbox" id="check_all"></td>
-                  <td class="tdOthers">NAME</td>
-                  <td class="tdCop">COMPANY</td>
-                  <td class="tdOthers">EMAIL</td>
-                  <td class="tdOthers">PHONE</td>
-                  <td class="tdOthers">TAGS</td>
+                  <td class="" style="min-width:15vw!important; padding-top: 0.8rem;">NAME</td>
+                  <td class="" style="min-width:55vw!important; padding-top: 0.8rem;">DESCRIPTION</td>
                 </tr>
               </thead>
               <tbody class="tdBody">
-                @if(count($contacts) > 0)
-                @foreach ($contacts as $contact)
-                <tr id="tr_{{$contact->id}}">
-                  <td class="tdt"><input type="checkbox" class="checkbox" data-id="{{$contact->id}}"></td>
-                  <td data-search="{{ $contact->fname }} {{ $contact->lname }}" class="tdName" onclick="window.location='/contact/{{ $contact->id }}'">
-                    <img src="https://via.placeholder.com/150x150/54de2b/FFFFFF.png?text={{ ucwords($contact->fname[0]) }}{{ ucwords($contact->lname[0]) }}" />
-                    {{ ucwords($contact->fname) }} {{ ucwords($contact->lname) }}</td>
-                  <td data-search="{{ $contact->company }}" class="tdCop" onclick="window.location='/contact/{{ $contact->id }}'">{{ $contact->company }}</td>
-                  <td class="tdOthers">{{ $contact->email }}</td>
-                  <td data-order="" class="tdOthers" onclick="window.location='/contact/{{ $contact->id }}'">{{ $contact->phoneNo }}</td>
-                  <td class="tdTags" onclick="window.location='/contact/{{ $contact->id }}'">{{ $contact->tags }}</td>
+                <tr id="">
+                  <td class="tdt"><input type="checkbox" class="checkbox" ></td>
+                  <td data-search="" class="" onclick="window.location='/metrics_sheets'">Form.xlx</td>
+                  <td data-search="" class="" onclick="window.location='/metrics_sheets'">Total Collated Products 2000</td>
                 </tr>
-                @endforeach
-                @endif
+                <tr id="">
+                  <td class="tdt"><input type="checkbox" class="checkbox" ></td>
+                  <td data-search="" class="" onclick="window.location='/metrics_sheets'">Sheet.docx</td>
+                  <td data-search="" class="" onclick="window.location='/metrics_sheets'">Total Collated Items 450</td>
+                </tr>
+                <tr id="">
+                  <td class="tdt"><input type="checkbox" class="checkbox" ></td>
+                  <td data-search="" class="" onclick="window.location='/metrics_sheets'">Sheet.docx</td>
+                  <td data-search="" class="" onclick="window.location='/metrics_sheets'">Total Collated Items 450</td>
+                </tr>
+                <tr id="">
+                  <td class="tdt"><input type="checkbox" class="checkbox" ></td>
+                  <td data-search="" class="" onclick="window.location='/metrics_sheets'">Sheet.docx</td>
+                  <td data-search="" class="" onclick="window.location='/metrics_sheets'">Total Collated Items 450</td>
+                </tr>
               </tbody>
             </table>
           </div>
         </div>
       </section><br><br>
-      <a href="/contact/create" class="btn btn-default mobileBtn"></a>
-      <div class="inputSearch">
-        <img src="{{ asset('css/icons/grsearch.svg') }}" >
-      </div>
-    </main>
 
+    </main>
+    <div class="inputSearch">
+      <img src="{{ asset('css/icons/grsearch.svg') }}" >
+    </div>
 </body>
 
 

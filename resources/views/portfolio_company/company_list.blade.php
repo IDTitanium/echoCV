@@ -37,7 +37,7 @@
           <div class="mobo">  
           <form class="form-inline form-search"  >
                 <label class="sr-only" for="inlineFormInputName2"></label>
-                <input type="search" class="form-control search-form mb-2  mr-sm-2" style="width: 24rem"="inlineFormInputName2" placeholder="Search files">
+                <input type="search" class="form-control search-form mb-2  mr-sm-2" style="width: 24rem" placeholder="Search files" name="keyword">
               
                 <button type="submit" class="btn btn-primary search-btn btn-sm mb-2 p-2">
                   <svg class="svg" width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,144 +64,40 @@
         </div>
         <hr class="horizontal mobileOnly shadow">
         {{-- cards --}}
+        @if($companyData)
+        @foreach ($companyData as $company)
         <div class="row ml-2 mt-5 col-md-12 col-sm-12 carder">
-            
-                <div class="card col-md-3 col-sm-6" >
+                 <div class="card col-md-3 col-sm-6" >
+         <a href="/portfolio_company/single_company/".$company->id>
+
                     <img src="{{ asset('css/icons/sony.png') }}" class="card-img-top mt-3" alt="...">
+        </a>
                    <div class="mt-2">
-                        <p class="float-left"> Sony </p>
+                        <p class="float-left">{{$company->c_name}} </p>
                         <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
                    </div>  
                    
-                   <p> Lead: Maria</p>
-                   <p> Analyst: Bimpe</p>
+                   <p> Lead: {{$company->lead}}</p>
+                   <p> Analyst: {{$company->analyst}}</p>
                    
                 </div>
-
-                <div class="card col-md-3  col-sm-12">
-                    <img src="{{ asset('css/icons/netflix.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left">  Netlix </p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> Lead: Matthew</p>
-                   <p> Analyst: Bimpe</p>
-                   
-                </div>
-
-                <div class="card col-md-3 " >
-                    <img src="{{ asset('css/icons/macd.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left"> McDonald's </p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> Lead: Matthew</p>
-                   <p> Analyst: Bimpe</p>
-                   
-                </div>
-
-                <div class="card col-md-3 " >
-                    <img src="{{ asset('css/icons/ninten.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left"> Nintendo </p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> Lead: Mark</p>
-                   <p> Analyst: Bimpe</p>
-                   
-                </div>
-
-                <div class="card col-md-3 " >
-                    <img src="{{ asset('css/icons/master.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left"> MasterCard </p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> Lead: Fisayo</p>
-                   <p> Analyst: Osamudiamen </p>
-                   
-                </div>
-
-                <div class="card col-md-3 " >
-                    <img src="{{ asset('css/icons/electric.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left"> General Electric </p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> Lead: Matthew</p>
-                   <p> Analyst: Bimpe</p>
-                   
-                </div>
-
-                <div class="card col-md-3 " >
-                    <img src="{{ asset('css/icons/pizza.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left"> Pizza Hut </p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> Lead: Matthew</p>
-                   <p> Analyst: Bimpe</p>
-                   
-                </div>
-
-                <div class="card col-md-3 " >
-                    <img src="{{ asset('css/icons/mit.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left"> Mitsubishi </p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> Lead: Damilola</p>
-                   <p> Analyst: Bimpe</p>
-                   
-                </div>
-
-                <div class="card col-md-3 " >
-                    <img src="{{ asset('css/icons/life.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left"> LifeBank </p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> Lead: Tsendai</p>
-                   <p> Analyst: Bimpe</p>
-                   
-                </div>
-
-                <div class="card col-md-3 " >
-                    <img src="{{ asset('css/icons/ibm.png') }}" class="card-img-top mt-3" alt="...">
-                   <div class="mt-2">
-                        <p class="float-left"><I></I></p>
-                        <p class="float-right" style="color:  #7AEF1F" onclick="myFunction(this)"> Open </p>
-                   </div>  
-                   
-                   <p> Lead: Olutosin</p>
-                   <p> Analyst: Bimpe</p>
-                   
-                </div>
-                
-
-            
         </div>
+        @endforeach
+        @endif
     </section>
     <script>
-function myFunction() {
-    if (evt.innerHTML == 'Closed') {
-        
-    evt.style.color = "red";
+function myFunction(evt) {
 
-   else {
-    evt.style.color = "green";
+   if (evt.innerHTML == 'Open') {
+    evt.innerHTML = 'Closed';
 
-        }
+  evt.style.color = "red";
+  } else {
+    evt.innerHTML = 'Open';
 
-    }
+evt.style.color = "#7AEF1F";
+
+  }
 }
 </script>
 

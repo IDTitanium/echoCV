@@ -42,7 +42,7 @@
           <li><a href="/dashboard"    class="sidebar-li dashboard"><img src="{{ asset('css/icons/dash.png') }}" />DASHBOARD</a></li>
           <li><a href="/new_company" class="sidebar-li port"><img src="{{ asset('css/icons/port.png') }}" />PORTIFOLIO COMPANIES</a></li>
           <li><a href="/reports" class="sidebar-li report"><img src="{{ asset('css/icons/report.png') }}" />REPORTS</a></li>
-          <li><a href="/create_metrics" class="sidebar-li metric"><img src="{{ asset('css/icons/metr.png') }}" />METRICS</a></li>
+          <li><a href="/metrics" class="sidebar-li metric"><img src="{{ asset('css/icons/metr.png') }}" />METRICS</a></li>
           <li><a href="/contacts" class="sidebar-li contact"><img src="{{ asset('css/icons/contact.png') }}" />CONTACTS</a></li>
           <li><a href="/files" class="sidebar-li file"><img src="{{ asset('css/icons/file.png') }}" />FILES</a></li>
           <li><a href="/archives" class="sidebar-li archive"><img src="{{ asset('css/icons/arch.png') }}" />ARCHIVES</a></li>
@@ -65,7 +65,7 @@
             <a class="dropdown-item" href="#">Help</a>
              <a class="dropdown-item" href="/home">Home</a>
               <a class="dropdown-item" href="#">Settings</a>
-            <a class="dropdown-item" href="/profile">Account setting</a>  
+            <a class="dropdown-item" href="/profile">Account setting</a>
             {{-- <a class="dropdown-item" href="/home">Home</a> --}}
             <a class="dropdown-item"
                onclick="event.preventDefault();

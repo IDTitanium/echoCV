@@ -11,7 +11,7 @@
       <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
       <link href="{{ asset('css/sample.css') }}" rel="stylesheet">
       <link href="{{ asset('css/report.css') }}" rel="stylesheet">
-      
+
       <!-- Fonts -->
       <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
       <link ‎href="https://fonts.googleapis.com/css?family=europa:200,600" rel="stylesheet">
@@ -42,7 +42,8 @@
         </div>
         <main class="wholeContent">
           <h3 class="newRepNav">Reports</h3>
-          <form action="{{ route('reports.store') }}" method="post" enctype="multipart/form-data">
+          <!-- <form action="{{ route('reports.store') }}" method="post" enctype="multipart/form-data"> -->
+            <form action="{{ route('testing.upload') }}" method="post" enctype="multipart/form-data">
             @csrf
             <section class="newReport">
               <a href="/reports" class="btn btn-default">Back</a>
@@ -58,32 +59,47 @@
                 </div>
               </div>
             </section>
-    
+            <textarea name="name" rows="8" cols="30" id="editor" placeholder="Add Some Text"></textarea>
+            <!-- <div id="editor" class="fomm-control" placeholder="Add Some Text">
+              <h1> Add Some Text</h1>
+            </div> -->
+            <div class="container d-flex justify-content-center mt-3 pt-1  " >
+              <button type="button" name="button" class="btn btn-secondary" id="textRequest" data-toggle="modal" data-target="#myModal" id="open">Add text request</button>
+              <button type="button" name="button" class="btn btn-secondary ml-3" id="metricRequest" data-toggle="modal" data-target="#myModal" id="open">Add metrics request</button>
+              <button type="button" name="button" class="btn btn-secondary ml-3" >Add file request</button>
+            </div>
           </form>
-               
-        <div id="editor" class="fomm-control">
-          <h1> Add Some Text</h1>
-        </div>
-        <div class="container d-flex justify-content-center mt-3 pt-1  " >
-          <button type="button" name="button" class="btn btn-secondary" id="textRequest" data-toggle="modal" data-target="#myModal" id="open">Add text request</button>
-          <button type="button" name="button" class="btn btn-secondary ml-3" id="metricRequest" data-toggle="modal" data-target="#myModal" id="open">Add metrics request</button>
-          <button type="button" name="button" class="btn btn-secondary ml-3" >Add file request</button>
-        </div>
-        </main> 
 
-   
+
+        </main>
+
         <script>
-                ClassicEditor
+                // ClassicEditor
+                //   .create( document.querySelector( '#editor' ) )
+                //   .then( editor => {
+                //           console.log( editor );
+                //   } )
+                //   .catch( error => {
+                //           console.error( error );
+                //   } );
+                //   image: {
+                //       toolbar: [ 'imageTextAlternative' ]
+                //   }
+
+                  ClassicEditor
                   .create( document.querySelector( '#editor' ) )
-                  .then( editor => {
-                          console.log( editor );
-                  } )
+                  .then(editor => {
+                  document.getElementById('editor').innerHTML = editor.getData();
+                  })
                   .catch( error => {
-                          console.error( error );
+                  console.error( error );
                   } );
-                      
-                 
-                const textRequest = document.getElementById('textRequest') 
+                  image: {
+                       toolbar: [ 'imageTextAlternative' ]
+                   }
+
+
+                const textRequest = document.getElementById('textRequest')
                 const metricRequest = document.getElementById('metricRequest')
 
                 textRequest.addEventListener('click', (e) => {
@@ -106,9 +122,9 @@
                     }
                     reader.readAsDataURL(file)
                   }
-                }) 
+                })
 
-                
+
                 metricRequest.addEventListener('click', (e) => {
                   Swal.fire({
                     title: 'Select File',

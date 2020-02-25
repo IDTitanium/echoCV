@@ -149,7 +149,7 @@
       <!-- Modal to create new contact -->
           <div class="modal" tabindex="-1" role="dialog" id="myModal" aria-labelledby="details-l" aria-hidden="true">
             <div class="modal-dialog" role="document">
-              <form method="post" action="{{ route('contact.store') }}">
+              <form method="post" action="{{ route('contacts.store') }}">
                 @csrf
                 <div class="modal-content">
                   <div class="modal-header">

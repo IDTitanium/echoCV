@@ -18,10 +18,12 @@ class CreateReportsTable extends Migration
             $table->bigIncrements('id');
             $table->string('report_title');
             $table->string('content');
-            $table->bigInteger('status')->unsigned()->default(0);
+            $table->string('status');
+            $table->string('subject')->nullable();
             $table->string('receiver');
-      			$table->bigInteger('user_id')->unsigned();
-      			$table->bigInteger('company_id')->unsigned();
+            $table->string('image');
+      			$table->bigInteger('user_id')->unsigned()->nullable();
+      			$table->bigInteger('company_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

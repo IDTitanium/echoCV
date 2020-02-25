@@ -47,14 +47,14 @@
         </div>
 
         <div class="desktopView  col-md-6 mx-auto">
-          <div class="heading container mt-4 ">
+          <div class="heading mt-4 ">
             <h3> August Investor Update</h3>
             <p class="not-mobile-content"> To: <span class="text-info "> Jane Magnesys for Netflix</span></p>
             
           </div>
           <hr class="shadow not-mobile-content">  
 
-          <div class="container sample-content">
+          <div class="sample-content">
             <p class="text-wrap">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. 
               Earum asperiores eos adipisci at, cum magnam repellendus, 
@@ -69,11 +69,11 @@
             </p>
           </div>
 
-          <div class="container">
-            <img src="{{ asset('css/icons/sample.png') }}" class="img-fluid" alt="">
+          <div class="">
+            <img src="{{ asset('css/icons/sample.png') }}" style="width: 100%" alt="">
           </div>
         
-          <div class="thanks container mt-4">
+          <div class="thanks  mt-4">
             <h4> Thanks</h4>
             <p class="text-wrap">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi optio facere accusantium
@@ -83,7 +83,7 @@
           </div>
           <hr class="shadow">
           <div class="not-mobile-content">
-            <div class="container row recieved ">
+            <div class=" row recieved ">
               <h5 class="ml-3"> Recieved</h5>
               <h6 class="ml-auto">Year: 
               <select name="" id="">
@@ -154,11 +154,15 @@
             
         
         </div>
-        <div class="container mobileHide">
+        <div class=" mobileHide">
           <div class="col">
             <div class="row">
                 <p> Section title</p>
-                <p class="ml-auto"> Required </p>
+                <p class="ml-auto "> Required </p>
+                <label class="switch mt-1 ml-2">
+                  <input type="checkbox" checked>
+                  <span class="slider round"></span>
+                </label>
             </div>
             <div class="form-group align-form  ">
               <input type="text" placeholder="Monthly metrics" class="p-3 form-control">
@@ -196,14 +200,66 @@
               </div>
               
             </div>
-            <div class="base-kpi row ml-n4 mt-3">
-              <p class="text-info"> <i class="fas fa-plus"></i> Add KPI</p>
-               <i class="fas fa-trash-alt ml-auto"></i>
+            <div class="base-kpi row ml-n3 mb-4 mt-3">
+              <a href="" class="text-info" data-toggle="modal" data-target="#addKpi"> <i class="fas fa-plus"></i> Add KPI</a>
+              <a href="" class="text-info ml-auto" data-toggle="modal" data-target="#deleteModal"> <i class="fas fa-trash-alt "></i> </a>
             </div>
+
+            <!-- Add KPI modal --> 
+            <div class="modal fade" id="addKpi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="addKpi">Add KPI</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <input type="text" placeholder="Add KPI" class="form-control">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancel </button>
+                    <button type="button" class="btn btn-primary  " class="close" data-dismiss="modal" aria-label="Close">Save</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- -->
+
+             <!-- Delete Modal -->
+
+             <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete update?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p> 
+                      Are you sure you want to delete this update?
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Yes, delete update </button>
+                    <button type="button" class="btn btn-default btn-test " class="close" data-dismiss="modal" aria-label="Close">No, keep update</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+             <!-- -->
 
             <div class="row">
               <p> Section title</p>
               <p class="ml-auto"> Required </p>
+              <label class="switch mt-1 ml-2">
+                <input type="checkbox" >
+                <span class="slider round"></span>
+              </label>
             </div>
             <div class="form-group align-form  ">
               <input type="text" placeholder="Pitch deck" style="font-size: 1.3rem" class="p-4 form-control">
@@ -216,21 +272,137 @@
             </div>
 
             <div class="upload ml-n3 mobileHide">
-              <button class="btn btn-secondary">
+              <button class="btn btn-secondary" data-toggle="modal" data-target="#uploadModal">
                 Upload file
               </button>
-              <i class="fas mt-2 fa-trash-alt float-right"></i>
+              <a href="" class="text-dark" data-toggle="modal" data-target="#deleteModal" ><i class="fas mt-2 fa-trash-alt float-right"></i></a>
             </div>
 
+            
         </div>
-          
-          <div class="row btns-in-row mt-5 ml-5 pl-5 mobileHide">
-            <button class="btn btn-secondary "> Add text request</button>
-            <button class="btn btn-secondary ml-2"> Add metrics request</button>
-            <button class="btn btn-secondary ml-2"> Add file request</button>
+          <!-- Upload file -->
+          <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addKpi">Upload File</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <label for=""> Name:</label>
+                  <input type="text" placeholder="File Name" class="form-control mb-5">
+
+                  <input type="file" class="form-control">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancel </button>
+                  <button type="button" class="btn btn-primary  " class="close" data-dismiss="modal" aria-label="Close">Upload</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- -->
+
+          <!-- delete modal -->
+          <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Delete update?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p> 
+                    Are you sure you want to delete this update?
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal"> Yes, delete update </button>
+                  <button type="button" class="btn btn-default btn-test " class="close" data-dismiss="modal" aria-label="Close">No, keep update</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- -->
+          <div class="row btns-in-row mt-5  mobileHide">
+            <button class="btn btn-secondary " data-toggle="modal" data-target="#addText"> Add text request</button>
+            <button class="btn btn-secondary ml-2" data-toggle="modal" data-target="#addMetrics"> Add metrics request</button>
+            <button class="btn btn-secondary ml-2"  data-toggle="modal" data-target="#uploadModal"> Add file request</button>
           </div>
         </div>
 
+      </div>
+
+      <!-- add text request --> 
+      <div class="modal fade" id="addText" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Text Request</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" placeholder="add text request" class="form-control">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger"  class="close" data-dismiss="modal"> Cancel </button>
+              <button type="button" class="btn btn-primary "  data-dismiss="modal" aria-label="Close">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add file request -->
+      <div class="modal fade" id="addMetrics" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Delete update?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p> 
+                <input type="text" placeholder="add metrics request" class="form-control">
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger"  class="close" data-dismiss="modal"> Cancel </button>
+              <button type="button" class="btn btn-primary " data-dismiss="modal" aria-label="Close">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- add file request -->
+      <div class="modal fade" id="uploadFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Delete update?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p> 
+                Are you sure you want to delete this update?
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"> Yes, delete update </button>
+              <button type="button" class="btn btn-default btn-test " class="close" data-dismiss="modal" aria-label="Close">No, keep update</button>
+            </div>
+          </div>
+        </div>
       </div>
 
       </section>

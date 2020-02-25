@@ -33,13 +33,14 @@
         <p style="color: #19B9FD;" class="backText" > <i class="fas fa-chevron-left"> </i><a href="../add_chart" style="color: #19B9FD;"> Back to portfolio companies </a></p>
         <hr class="ml-n5">
       </div>
-
+@if ($companyData)
+@foreach ($companyData as $company)
       <div class="row page-setup">
         <div class="col-md-8 col-sm-12 ">
           <div class="row life-section">
             <img src="{{ asset('css/icons/life.png') }}" class="life-img" alt="">
             <div class="col life-bank col-sm-12">
-              <h3> LifeBank</h3>
+              <h3> {{$company->c_name}}</h3>
               <p>
                 LifeBank is a smart blood system saving lives in Lagos by speeding up blood donations and deliveries
               </p>
@@ -56,14 +57,17 @@
                       <i class="fas fa-map-marker-alt"></i>
                       Abuja
                     </li>
-                    <li class="ml-3 other"><i class="fas fa-globe"></i> www.lifebank.org</li>
+                    <li class="ml-3 other"><i class="fas fa-globe"></i> {{$company->website}}</li>
                     <li class="ml-3 other"><i class="far fa-envelope"></i> hello@lifebank.ng</li>
                     <li class="ml-3"><i class="fas fa-tags"></i> B2C, Healthcare</li>
                     
                   </ul>   
                   <div class="row toggle" style="">
                     <p class="other">Closed</p>
-                    <i class="fas other fa-toggle-on toggler" style=""></i>
+                    <label class="switch mt-1 ml-2">
+                      <input type="checkbox" checked>
+                      <span class="slider round"></span>
+                    </label>
                     <p class="open" style="color: #7AEF1F;">Open</p>
                 </div>
      
@@ -345,9 +349,9 @@
             </div>
 
             <div class="funding">
-              <div class=" mt-5">
+              <div class=" mt-5 row p-3">
                 <h4 class="text-uppercase"> funding </h4>
-                  
+                <a href="/funding" class="ml-auto" style="color: #000000"> Edit <i class="fas fa-pencil-alt"></i></a>      
               </div>
                 <div class="row" >
                     <div class="col-6  ml-1">
@@ -425,9 +429,53 @@
 
                 </div>
               <div>
-                <p class="lead"><i class="fas fa-plus ml-2" style="font-size: 1.2rem; color: #666666"></i> Add contact</p>  
+                <a  href="" class="lead text-black-50" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus ml-2" style="font-size: 1.2rem; color: #666666"></i> Add contact</a>  
               </div>   
                 
+              <!-- Add contact modal -->
+              <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addKpi">Add contact</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <input type="text" placeholder="Search contact" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                      {{-- <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancel </button> --}}
+                      <button type="button" class="btn btn-primary  " class="close" data-dismiss="modal" aria-label="Close">Apply</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+              <!-- Add file modal -->
+              <div class="modal fade" id="addFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addFile">Add File</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <label for=""> Name:</label>
+                      <input type="text" placeholder="" class="form-control">
+
+                      <input type="file" class="form-control mt-4">
+                    </div>
+                    <div class="modal-footer">
+                      {{-- <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancel </button> --}}
+                      <button type="button" class="btn btn-primary  " class="close" data-dismiss="modal" aria-label="Close">Apply</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
               </div>
               <div class="mt-5 files">
                 <h4 class="text-uppercase">files </h4>
@@ -437,7 +485,7 @@
                   </div>
 
                   <div class="col-4">
-                    <p class="lead"><i class="fas fa-plus ml-2" style="font-size: 1.2rem; color: #666666"></i> Add file</p>                    </div>
+                    <a href="" class="lead text-black-50" data-toggle="modal" data-target="#addFile"><i class="fas fa-plus ml-2" style="font-size: 1.2rem; color: #666666"></i> Add file</p>                    </div>
 
                 </div>
               </div>
@@ -492,7 +540,8 @@
         </div>
       </div>
       
-
+@endforeach
+@endif
     </section>
     </body>
 </html>

@@ -33,6 +33,25 @@ hr{
     margin-top: -2.95em !important;
 }
 
+.modal-footer{
+    border-top: none !important;
+  }
+  .modal-header{
+    border-bottom: none !important;
+  }
+  .verticalLine {
+    border-left: thick solid #f8f8f8;
+    height: 100vh;
+    box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 0px 4px 4px 0px;
+  }
+
+  .btn-data{
+    background: #CCCCCC;
+    border-radius: 4px;
+    color: #898989;
+  }
+
 .mobile-dashboard-body{
     display: none;
     margin-top: 0px !important;

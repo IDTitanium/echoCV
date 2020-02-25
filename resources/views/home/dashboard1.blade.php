@@ -23,7 +23,17 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
       <script src="{{ asset('js/app.js') }}" defer></script>
   </head>
-
+  <style>
+    .dash-board a:hover{
+        opacity: 0.6;
+        padding-left: 5px;
+    }
+    .dash-board a{
+        color: #333333; 
+        font-size: 16px;
+      
+    }
+  </style>
 <body>
     <div class="wrapper">
       @include('layouts.sidebar')
@@ -32,9 +42,32 @@
     
     <main class="wholeContent mt-2  "> 
       <div class="dashboard-header float-right" >  
-        <button class="btn btn-primary">Add Chart </button>
-        <button class="btn btn-dashboard ml-2">Share </button>
+        <a href="/add_chart" class="btn btn-primary">Add Chart </a>
+        <button type="button" class="btn btn-dashboard ml-2" data-toggle="modal" data-target="#exampleModal">Share </button>
       </div>
+
+      <!-- Share modal -->
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Share with others?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <input type="text" class="form-control" placeholder="Enter name or email address">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-data" data-dismiss="modal"> Share </button>
+              <button type="button" class="btn btn-default btn-test "  style="color: #333333" class="close" data-dismiss="modal" aria-label="Close">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of share modal -->
 
       <div class="mobile-dashboard-header not-desktop-content row mt-4 ml-5 d-flex justify-content-between">
         <h3> Dashboard</h3>
@@ -43,12 +76,36 @@
 
       <div class="dashboards mt-4 ml-2 ">
         
-          <ul class="row list-unstyled ">
+          <ul class="row list-unstyled dash-board">
             <li > <a class="activate list-inline-item" > Dashboard 1 </a></li>
-            <li class="ml-3 list-inline-item" > Dashboard 2</li>
-            <li class="ml-3 list-inline-item"> <i class="fas fa-plus"></i> </li>
+            <li class="ml-3 list-inline-item" > <a href=""> Dashboard 2 </a></li>
+            <li class="ml-3 list-inline-item"> <a href="" data-toggle="modal" data-target="#addModal"> <i class="fas fa-plus"></i>  </a></li>
           </ul>
       </div>
+
+      <!-- Add Dashboard -->
+
+      <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Name your dashboard</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <input type="text" class="form-control" placeholder="">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal"> Create dashboard </button>
+              <button type="button" class="btn btn-default btn-test "  style="color: #333333" class="close" data-dismiss="modal" aria-label="Close">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- End of add dashboard modal -->
 
       <div class="mobile-dashboard-body  mt-3 row ">
         <div class="btn-group ml-4">
@@ -63,7 +120,7 @@
         </div>
         
           <button class="btn btn-primary ml-5 "> Add Chart </button>
-          <button class="btn btn-share ml-2"> <i class="fas fa-share-alt"></i></button>
+          <button class="btn btn-share ml-1"> <i class="fas fa-share-alt"></i></button>
       </div>
 
       <hr>

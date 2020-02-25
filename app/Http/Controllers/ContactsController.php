@@ -25,13 +25,7 @@ class ContactsController extends Controller
         // $contacts = Contact::orderBy('created_at', 'desc')->paginate(10);
         // $contacts = Contact::orderBy('created_at', 'desc');
         $contacts = Contact::all();
-        return view('contact.index')->with('contacts', $contacts);
-    }
-
-    public function home(Request $request)
-    {
-        $contacts = Contact::all();
-        return view('contact.index1')->with('contacts', $contacts);
+        return view('contacts.index')->with('contacts', $contacts);
     }
 
     /**
@@ -41,7 +35,7 @@ class ContactsController extends Controller
      */
     public function create()
     {
-      return view('contact.create');
+      return view('contacts.create');
     }
 
     /**
@@ -90,7 +84,7 @@ class ContactsController extends Controller
       // $contacts = Contact::all($id);
       // $contacts = Contact::orderBy('created_at', 'desc');
       $contacts = Contact::find($id);
-      return view('contact.show')->with('contacts', $contacts);
+      return view('contacts.show')->with('contacts', $contacts);
 
     }
 
@@ -103,7 +97,7 @@ class ContactsController extends Controller
     public function edit($id)
     {
       $contacts = Contact::find($id);
-      return view('contact.show')->with('contacts', $contacts);
+      return view('contacts.show')->with('contacts', $contacts);
     }
 
     /**
@@ -124,7 +118,6 @@ class ContactsController extends Controller
         'title' => 'required',
         'tags' => 'required'
       ]);
-
 
       //Create Contact
       $contact = Contact::find($id);;
